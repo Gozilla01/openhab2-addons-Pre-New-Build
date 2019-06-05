@@ -1,0 +1,60 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.openhab.binding.openwebnet
+Bnd-LastModified: 1559769748888
+Bundle-ClassPath: .,openwebnet-lib-0.9.20-SNAPSHOT.jar
+Bundle-Description: "This project contains the official add-ons of ope
+ nHAB"
+Bundle-DocURL: https://github.com/openhab/infrastructure/org.openhab.a
+ ddons.reactor/org.openhab.addons.reactor.bundles/org.openhab.binding.
+ openwebnet
+Bundle-License: "Eclipse Public License 2.0";link="https://www.eclipse
+ .org/legal/epl-2.0/"
+Bundle-ManifestVersion: 2
+Bundle-Name: openHAB Add-ons :: Bundles :: OpenWebNet (BTicino/Legrand
+ ) Binding
+Bundle-SCM: url="https://github.com/openhab/openhab2-addons/org.openha
+ b.addons.reactor.bundles/org.openhab.binding.openwebnet",connection="
+ scm:git:https://github.com/openhab/openhab2-addons.git/org.openhab.ad
+ dons.reactor.bundles/org.openhab.binding.openwebnet",developer-connec
+ tion="scm:git:https://github.com/openhab/openhab2-addons.git/org.open
+ hab.addons.reactor.bundles/org.openhab.binding.openwebnet",tag=HEAD
+Bundle-SymbolicName: org.openhab.binding.openwebnet
+Bundle-Vendor: openHAB.org
+Bundle-Version: 2.5.0.201906052122
+Created-By: 1.8.0_191 (Oracle Corporation)
+Export-Package: org.openhab.binding.openwebnet;version="2.5.0";uses:="
+ org.eclipse.smarthome.core.thing",org.openhab.binding.openwebnet.hand
+ ler;version="2.5.0";uses:="javax.measure,org.eclipse.smarthome.config
+ .core.status,org.eclipse.smarthome.core.library.types,org.eclipse.sma
+ rthome.core.thing,org.eclipse.smarthome.core.thing.binding,org.eclips
+ e.smarthome.core.types"
+Import-Package: org.eclipse.smarthome.config.core,org.eclipse.smarthom
+ e.config.core.status,org.eclipse.smarthome.config.discovery,org.eclip
+ se.smarthome.config.discovery.upnp,org.eclipse.smarthome.core.library
+ .types,org.eclipse.smarthome.core.library.unit,org.eclipse.smarthome.
+ core.thing,org.eclipse.smarthome.core.thing.binding,org.eclipse.smart
+ home.core.thing.binding.builder,org.eclipse.smarthome.core.thing.type
+ ,org.eclipse.smarthome.core.types,org.openhab.binding.openwebnet,com.
+ google.common.base;version="14.0",com.google.common.collect;version="
+ 14.0",gnu.io;version="[3.14,4)",javax.measure;version="[1.0,2)",org.j
+ upnp.model.meta,org.jupnp.model.types,org.osgi.framework;version="[1.
+ 8,2)",org.slf4j;version="[1.7,2)"
+Private-Package: ESH-INF.binding,ESH-INF.i18n,ESH-INF.thing,org.openha
+ b.binding.openwebnet.internal,org.openhab.binding.openwebnet.internal
+ .discovery,org.openwebnet,org.openwebnet.bus,org.openwebnet.bus.queue
+ ,org.openwebnet.message
+Provide-Capability: osgi.service;objectClass:List<String>="org.eclipse
+ .smarthome.config.discovery.DiscoveryService",osgi.service;objectClas
+ s:List<String>="org.eclipse.smarthome.config.discovery.upnp.UpnpDisco
+ veryParticipant",osgi.service;objectClass:List<String>="org.eclipse.s
+ marthome.core.thing.binding.ThingHandlerFactory"
+Require-Capability: osgi.extender;filter:="(&(osgi.extender=osgi.compo
+ nent)(version>=1.4.0)(!(version>=2.0.0)))",osgi.ee;filter:="(&(osgi.e
+ e=JavaSE)(version=1.8))"
+Service-Component: OSGI-INF/org.openhab.binding.openwebnet.internal.Op
+ enWebNetHandlerFactory.xml,OSGI-INF/org.openhab.binding.openwebnet.in
+ ternal.discovery.BusGatewayUpnpDiscovery.xml,OSGI-INF/org.openhab.bin
+ ding.openwebnet.internal.discovery.OpenWebNetBridgeDiscoveryService.x
+ ml
+Tool: Bnd-4.2.0.201903051501
+
