@@ -28,6 +28,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/openwebnet-lib-0.9.20-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/openwebnet-lib-0.9.20.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
