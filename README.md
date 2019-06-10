@@ -9,7 +9,7 @@
    - **TO DO** file update README.MD
 
 
-**v2.5.0.M4.pre1 ** - 08/06/2019
+**v2.5.0.M4.pre1** - 08/06/2019
 
 - From [v2.5.0.M3](https://github.com/mvalla/openhab2-addons/blob/openwebnet/bundles/org.openhab.binding.openwebnet/README_beta.md#changelog)
 - [FIX [#80](https://github.com/mvalla/openhab2-addons/issues/80)] thermo: setmode in MANUAL not work
