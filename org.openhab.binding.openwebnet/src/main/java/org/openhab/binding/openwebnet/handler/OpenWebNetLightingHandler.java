@@ -14,6 +14,7 @@ package org.openhab.binding.openwebnet.handler;
 
 import static org.openhab.binding.openwebnet.OpenWebNetBindingConstants.*;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -55,6 +56,7 @@ public class OpenWebNetLightingHandler extends OpenWebNetThingHandler {
     private boolean brightnessLevelRequested = false; // was the brightness level requested ?
     private int latestBrightnessWhat = -1; // latest brightness WHAT value (-1 = unknown)
     private int latestBrightnessWhatBeforeOff = -1; // latest brightness WHAT value before device was set to off
+    private int what = 0; // address what
 
     public OpenWebNetLightingHandler(@NonNull Thing thing) {
         super(thing);
@@ -67,6 +69,9 @@ public class OpenWebNetLightingHandler extends OpenWebNetThingHandler {
         logger.debug("==OWN:LightingHandler== initialize() thing={}", thing.getUID());
         if (bridgeHandler != null && bridgeHandler.isBusGateway()) {
             lightingType = Lighting.Type.POINT_TO_POINT;
+        }
+        if (getConfig().get(CONFIG_PROPERTY_WHAT) != null) {
+            what = ((BigDecimal) getConfig().get(CONFIG_PROPERTY_WHAT)).intValue();
         }
     }
 
@@ -109,7 +114,17 @@ public class OpenWebNetLightingHandler extends OpenWebNetThingHandler {
         logger.debug("==OWN:LightingHandler== handleSwitchCommand() (command={} - channel={})", command, channel);
         if (command instanceof OnOffType) {
             if (OnOffType.ON.equals(command)) {
-                bridgeHandler.gateway.send(Lighting.requestTurnOn(toWhere(channel), lightingType));
+                if (what == 0) {
+                    bridgeHandler.gateway.send(Lighting.requestTurnOn(toWhere(channel), lightingType));
+                } else {
+                    //
+                    // Attesa aggiornamento della libreria per WHAT ........
+                    // Esempio:
+                    // @param what the int
+                    // bridgeHandler.gateway
+                    // .send(Lighting.requestTurnWhat(toWhere(channel), what, lightingType));
+                    //
+                }
             } else if (OnOffType.OFF.equals(command)) {
                 bridgeHandler.gateway.send(Lighting.requestTurnOff(toWhere(channel), lightingType));
             }
