@@ -21,7 +21,7 @@
 
      | Group Command | Bus Principal    | Bus Local      | Note                             | 
      | ------------- | :--------------: | :------------: | -------------------------------- |
-     | Ambient       | `No Test`        | `No Test`      |                                  |
+     | Area          | `OK`             | `No Test`      |                                  |
      | Group         | `No Test`        | `No Test`      |                                  |
      | General       | `No Test`        | `No Test`      |                                  |
 
