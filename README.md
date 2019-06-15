@@ -9,21 +9,21 @@
    - New parameter `addrtype` (`1`= Point to Point, `2`= Area, `3`= Group, `4`= General)
    - **TO DO** file update README.MD
    
-**Test Lighting group addresses**
+   - **Test Lighting group addresses**
 
-| Group Command | Bus Principal    | Bus Local      | Note                             | 
-| ------------- | :--------------: | :------------: | -------------------------------- |
-| Area          | `OK`             | `No Test`      |                                  |
-| Group         | `Problem (1)`  | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere(). Es. `1.1` instead of `1.#1`       |
-| General       | `OK (1)`       | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`                                  |
+     | Group Command | Bus Principal    | Bus Local      | Note                             | 
+     | ------------- | :--------------: | :------------: | -------------------------------- |
+     | Area          | `OK`             | `No Test`      |                                  |
+     | Group         | `Problem (1)`  | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere(). Es. `1.1` instead of `1.#1`       |
+     | General       | `OK (1)`       | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`                                  |
 
-**Test Automation group addresses**
+   - **Test Automation group addresses**
 
-| Group Command | Bus Principal    | Bus Local      | Note                             | 
-| ------------- | :--------------: | :------------: | -------------------------------- |
-| Ambient       | `No Test`        | `No Test`      |                                  |
-| Group         | `No Test`        | `No Test`      |                                  |
-| General       | `No Test`        | `No Test`      |                                  |
+     | Group Command | Bus Principal    | Bus Local      | Note                             | 
+     | ------------- | :--------------: | :------------: | -------------------------------- |
+     | Ambient       | `No Test`        | `No Test`      |                                  |
+     | Group         | `No Test`        | `No Test`      |                                  |
+     | General       | `No Test`        | `No Test`      |                                  |
 
 - [FIX [#79](https://github.com/mvalla/openhab2-addons/issues/79)] Add what parameter to lighting
    - New parameter `what` (default `what`= 0)  
