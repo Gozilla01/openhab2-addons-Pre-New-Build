@@ -399,13 +399,11 @@ public class OpenWebNetBridgeHandler extends ConfigStatusBridgeHandler implement
                     // command Automation general or ambient
                     logger.debug("==OWN==  Message Automation General or Area");
                 }
-                return;
             }
             if (baseMsg instanceof Lighting) {
                 // command Lighting general or ambient
                 logger.debug("==OWN==  Message Lighting General or Area");
                 callAllThingHandlerMessage(msg, Who.LIGHTING.value().toString());
-                return;
             }
         }
         getThingAssociated(msg);
