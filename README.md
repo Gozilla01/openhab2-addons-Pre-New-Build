@@ -14,7 +14,7 @@
      | Group Command | Bus Principal    | Bus Local      | Note                             | 
      | ------------- | :--------------: | :------------: | -------------------------------- |
      | Area          | `OK`             | `No Test`      |                                  |
-     | Group         | `Problem (1)`    | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere(). Es. `1.1` instead of `1.#1`       |
+     | Group         | `Problem (1)`    | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `1.1` instead of `1.#1`       |
      | General       | `OK (1)`         | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`                                  |
 
    - **Test Automation group addresses**
@@ -22,7 +22,7 @@
      | Group Command | Bus Principal    | Bus Local      | Note                             | 
      | ------------- | :--------------: | :------------: | -------------------------------- |
      | Area          | `OK`             | `No Test`      |                                  |
-     | Group         | `Problem (1)`    | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere(). Es. `2.1` instead of `2.#1`   |
+     | Group         | `Problem (1)`    | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `2.1` instead of `2.#1`   |
      | General       | `OK`             | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`                                 |
 
 - [FIX [#79](https://github.com/mvalla/openhab2-addons/issues/79)] Add what parameter to lighting
