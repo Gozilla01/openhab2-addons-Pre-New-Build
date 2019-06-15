@@ -49,17 +49,18 @@
 ### openwebnet.things:
 
 ```xtend
-Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=false ] {  
-      bus_on_off_switch MygroupAmb     "Group 1-2 AMB"	[ where="2", what=0, addrtype=2 ]
-      bus_on_off_switch MygroupGen     "Group 1-GEN"  	[ where="0", what=0, addrtype=4 ]
+Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
+{  
+      bus_on_off_switch MygroupArea    "Group 1-2 Area"		[ where="2", what=0, addrtype=2 ]
+      bus_on_off_switch MygroupGen     "Group 1-GEN"		[ where="0", what=0, addrtype=4 ]
 }
 ``` 
 
 ### openwebnet.items:
 
 ```xtend
-Switch   ILR_testAmb1   "Group 1-2 AMB"   { channel="openwebnet:bus_on_off_switch:mybridge:MygroupAmb:switch"}
-Switch   ILR_testGen1   "Group 1-GEN"     { channel="openwebnet:bus_on_off_switch:mybridge:MygroupGen:switch"}
+Switch   ILR_testArea1   "Group 1-2 AREA"   { channel="openwebnet:bus_on_off_switch:mybridge:MygroupArea:switch"}
+Switch   ILR_testGen1    "Group 1-GEN"      { channel="openwebnet:bus_on_off_switch:mybridge:MygroupGen:switch"}
 
 ```
 
@@ -68,13 +69,12 @@ Switch   ILR_testGen1   "Group 1-GEN"     { channel="openwebnet:bus_on_off_switc
 ```xtend
 sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
 {
-
    Frame label="Test AMB Lighing" 
    {     
-      Switch item=ILR_testAmb1 		label="Ambient 2"		mappings=[ON="ON"]
-		Switch item=ILR_testAmb1 		label="Ambient 2"		mappings=[OFF="OFF"]		   
+      Switch item=ILR_testArea1 		label="Area 2"		mappings=[ON="ON"]
+      Switch item=ILR_testArea1 		label="Area 2"		mappings=[OFF="OFF"]		   
    }
-	Frame label="Test GEN Lighing"
+   Frame label="Test GEN Lighing"
    {
       Switch item=ILR_testGen1 		label="GEN"		      mappings=[ON="ON"]
       Switch item=ILR_testGen1 		label="GEN"		      mappings=[OFF="OFF"]		
