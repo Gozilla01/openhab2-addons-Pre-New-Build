@@ -6,21 +6,29 @@
 
 - [FIX [#35](https://github.com/mvalla/openhab2-addons/issues/35)] Support for group addresses (WHERE=#n)
    - For lighting and automation
-   - New parameter `addrtype` (`1`= Point to Point, `2`= Area, `3`= Group, `4`= General) 
-   - Test Lighting:
-     - General    OK
-     - Area       OK
-     - Group      NO
-   - Test Automation:
-     - General    No
-     - Area       NO
-     - Group      NO
+   - New parameter `addrtype` (`1`= Point to Point, `2`= Area, `3`= Group, `4`= General)
    - **TO DO** file update README.MD
+   
+**Test Lighting group addresses**
+
+| Group Command | Bus Principal    | Bus Local      | Note                             | 
+| ------------- | :--------------: | :------------: | -------------------------------- |
+| Area          | `OK`             | `No Test`      |                                  |
+| Group         | `Problem (1)`  | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere(). Es. `1.1` instead of `1.#1`       |
+| General       | `OK (1)`       | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`                                  |
+
+**Test Automation group addresses**
+
+| Group Command | Bus Principal    | Bus Local      | Note                             | 
+| ------------- | :--------------: | :------------: | -------------------------------- |
+| Ambient       | `No Test`        | `No Test`      |                                  |
+| Group         | `No Test`        | `No Test`      |                                  |
+| General       | `No Test`        | `No Test`      |                                  |
+
 - [FIX [#79](https://github.com/mvalla/openhab2-addons/issues/79)] Add what parameter to lighting
    - New parameter `what` (default `what`= 0)  
    - **Not working, waiting to resolve the library implementation**
    - **TO DO** file update README.MD
-
 
 **v2.5.0.M4.pre1** - 08/06/2019
 
@@ -33,6 +41,8 @@
    - New channel `shutterMotion` (`0`= stop, `1`= up, `2`= down) 
    - **TO DO** file update README.MD
 - [Fix [#69](https://github.com/mvalla/openhab2-addons/issues/69)] Updating of article statuses, lighting and automation, with the received AMB-GR-GEN commands.
+
+
 
 ## Group Example
 
