@@ -23,7 +23,7 @@
      | ------------- | :--------------: | :------------: | -------------------------------- |
      | Area          | `OK`             | `No Test`      |                                  |
      | Group         | `No Test`        | `No Test`      |                                  |
-     | General       | `No Test`        | `No Test`      |                                  |
+     | General       | `OK`             | `No Test`      |                                  |
 
 - [FIX [#79](https://github.com/mvalla/openhab2-addons/issues/79)] Add what parameter to lighting
    - New parameter `what` (default `what`= 0)  
