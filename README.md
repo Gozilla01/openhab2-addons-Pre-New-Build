@@ -71,13 +71,13 @@ sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
 {
    Frame label="Test AMB Lighing" 
    {     
-      Switch item=ILR_testArea1 		label="Area 2"		mappings=[ON="ON"]
-      Switch item=ILR_testArea1 		label="Area 2"		mappings=[OFF="OFF"]		   
+      Switch item=ILR_testArea1     label="Area 2"    mappings=[ON="ON"]
+      Switch item=ILR_testArea1     label="Area 2"    mappings=[OFF="OFF"]		   
    }
    Frame label="Test GEN Lighing"
    {
-      Switch item=ILR_testGen1 		label="GEN"		      mappings=[ON="ON"]
-      Switch item=ILR_testGen1 		label="GEN"		      mappings=[OFF="OFF"]		
+      Switch item=ILR_testGen1      label="GEN"       mappings=[ON="ON"]
+      Switch item=ILR_testGen1      label="GEN"       mappings=[OFF="OFF"]		
    }
 }
 
