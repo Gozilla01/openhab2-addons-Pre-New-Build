@@ -20,8 +20,8 @@
 
 - Renamed the name of the version from 2.5.0.M4 to 2.5.0.M3
 - After commit cdc8ba1
-- [FIX [#76](https://github.com/mvalla/openhab2-addons/issues/76)] Migrated to new OH2 build system (bndtools)
-- Now using openwebnet-lib-0.9.20
+  - [FIX [#76](https://github.com/mvalla/openhab2-addons/issues/76)] Migrated to new OH2 build system (bndtools)
+  - Now using openwebnet-lib-0.9.20
 
 **v2.5.0.M4.pre2** - 16/06/2019
 
@@ -29,7 +29,7 @@
    - For lighting and automation
    - New parameter `addrtype` (`1`= Point to Point, `2`= Area, `3`= Group, `4`= General)
    - **TO DO** file update README.MD
-   - See the tables **Lighting group addresses** and **Automation group addresses**
+   - See the tables [Lighting group addresses](https://github.com/Gozilla01/openhab2-addons-Pre-New-Build/blob/master/README.md#test-lighting-group-addresses) and [Automation group addresses](https://github.com/Gozilla01/openhab2-addons-Pre-New-Build/blob/master/README.md#test-automation-group-addresses)
 - [Issue [#79](https://github.com/mvalla/openhab2-addons/issues/79)] Add what parameter to lighting
    - New parameter `what` (default `what`= 0)  
    - **Not working, waiting to resolve the library implementation**
