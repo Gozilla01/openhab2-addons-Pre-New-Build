@@ -11,7 +11,7 @@
 
 **v2.5.0.M4.pre2** - 16/06/2019
 
-- [FIX [#35](https://github.com/mvalla/openhab2-addons/issues/35)] Support for group addresses (WHERE=#n)
+- [Issue [#35](https://github.com/mvalla/openhab2-addons/issues/35)] Support for group addresses (WHERE=#n)
    - For lighting and automation
    - New parameter `addrtype` (`1`= Point to Point, `2`= Area, `3`= Group, `4`= General)
    - **TO DO** file update README.MD
@@ -32,7 +32,7 @@
      | Group         | `Problem (1)`    | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `2.1` instead of `2.#1`   |
      | General       | `OK`             | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`                                 |
 
-- [FIX [#79](https://github.com/mvalla/openhab2-addons/issues/79)] Add what parameter to lighting
+- [Issue [#79](https://github.com/mvalla/openhab2-addons/issues/79)] Add what parameter to lighting
    - New parameter `what` (default `what`= 0)  
    - **Not working, waiting to resolve the library implementation**
    - **TO DO** file update README.MD
