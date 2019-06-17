@@ -1,5 +1,19 @@
 # openhab2-addons-Pre-New-Build
 
+## Test Lighting group addresses
+| Group Command | Bus Principal    | Bus Local      | Note                             | 
+| ------------- | :--------------: | :------------: | -------------------------------- |
+| Area          | `OK`             | `No Test`      |                                  |
+| Group         | `Problem (1)`    | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `1.1` instead of `1.#1`       |
+| General       | `OK (1)`         | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???` 
+
+## Test Automation group addresses
+| Group Command | Bus Principal    | Bus Local      | Note                             | 
+| ------------- | :--------------: | :------------: | -------------------------------- |
+| Area          | `OK`             | `No Test`      |                                  |
+| Group         | `Problem (1)`    | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `2.1` instead of `2.#1`   |
+| General       | `OK`             | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`                                 |
+
 ## Changelog
 
 **v2.5.0.M3.pre3 =IN PROGRESS=** - dd/06/2019
@@ -15,23 +29,7 @@
    - For lighting and automation
    - New parameter `addrtype` (`1`= Point to Point, `2`= Area, `3`= Group, `4`= General)
    - **TO DO** file update README.MD
-   
-   - **Test Lighting group addresses**
-
-     | Group Command | Bus Principal    | Bus Local      | Note                             | 
-     | ------------- | :--------------: | :------------: | -------------------------------- |
-     | Area          | `OK`             | `No Test`      |                                  |
-     | Group         | `Problem (1)`    | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `1.1` instead of `1.#1`       |
-     | General       | `OK (1)`         | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`                                  |
-
-   - **Test Automation group addresses**
-
-     | Group Command | Bus Principal    | Bus Local      | Note                             | 
-     | ------------- | :--------------: | :------------: | -------------------------------- |
-     | Area          | `OK`             | `No Test`      |                                  |
-     | Group         | `Problem (1)`    | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `2.1` instead of `2.#1`   |
-     | General       | `OK`             | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`                                 |
-
+   - See the tables **Lighting group addresses** and **Automation group addresses**
 - [Issue [#79](https://github.com/mvalla/openhab2-addons/issues/79)] Add what parameter to lighting
    - New parameter `what` (default `what`= 0)  
    - **Not working, waiting to resolve the library implementation**
