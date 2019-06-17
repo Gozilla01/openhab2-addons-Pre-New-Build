@@ -9,7 +9,7 @@
 - [FIX [#76](https://github.com/mvalla/openhab2-addons/issues/76)] Migrated to new OH2 build system (bndtools)
 - Now using openwebnet-lib-0.9.20
 
-**v2.5.0.M4.pre2 - 16/06/2019
+**v2.5.0.M4.pre2** - 16/06/2019
 
 - [FIX [#35](https://github.com/mvalla/openhab2-addons/issues/35)] Support for group addresses (WHERE=#n)
    - For lighting and automation
