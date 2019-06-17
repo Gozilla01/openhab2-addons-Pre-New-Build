@@ -12,7 +12,7 @@
 | ------------- |:------------------------:| :--------------: |:------------------------:| :------------: | ------------------------- |
 | Area          | `OK`                     | `OK`             | `No Test`                | `No Test`      |                           |
 | Group         | `Problem (1)`            | `Problem (1)`    | `No Test`                | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `2.1` instead of `2.#1`   |
-| General       | `OK`                     | `OK`             | `No Test`                | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`   |
+| General       | `OK`                     | `OK (1)`         | `No Test`                | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`   |
 
 ## Changelog
 
