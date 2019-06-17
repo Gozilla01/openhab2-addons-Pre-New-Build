@@ -1,18 +1,18 @@
 # openhab2-addons-Pre-New-Build
 
 ## Test Lighting group addresses
-| Group Command | Bus Principal    | Bus Local      | Note                             | 
-| ------------- | :--------------: | :------------: | -------------------------------- |
-| Area          | `OK`             | `No Test`      |                                  |
-| Group         | `Problem (1)`    | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `1.1` instead of `1.#1`       |
-| General       | `OK (1)`         | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???` 
+| Group Command | Discovery Bus Principale | Test Bus Principal | Discovery Bus Local | Bus Local      | Note                             | 
+| ------------- |:------------------------:|:------------------:|:-------------------:| :------------: | ----------------------- |
+| Area          |`OK`                      | `OK`               | `No Test`           | `No Test`      |                         |
+| Group         |`Problem (1)`             | `Problem (1)`      | `No Test`           | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `1.1` instead of `1.#1`       |
+| General       |`OK`                      | `OK (1)`           | `No Test`           | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???` 
 
 ## Test Automation group addresses
-| Group Command | Bus Principal    | Bus Local      | Note                             | 
-| ------------- | :--------------: | :------------: | -------------------------------- |
-| Area          | `OK`             | `No Test`      |                                  |
-| Group         | `Problem (1)`    | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `2.1` instead of `2.#1`   |
-| General       | `OK`             | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`                                 |
+| Group Command | Discovery Bus Principale | Bus Principal    | Discovery Bus Principale | Bus Local      | Note                      | 
+| ------------- |:------------------------:| :--------------: |:------------------------:| :------------: | ------------------------- |
+| Area          | `OK`                     | `OK`             | `No Test`                | `No Test`      |                           |
+| Group         | `Problem (1)`            | `Problem (1)`    | `No Test`                | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `2.1` instead of `2.#1`   |
+| General       | `OK`                     | `OK`             | `No Test`                | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`   |
 
 ## Changelog
 
