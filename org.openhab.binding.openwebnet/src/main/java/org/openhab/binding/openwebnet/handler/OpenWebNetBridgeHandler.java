@@ -574,8 +574,8 @@ public class OpenWebNetBridgeHandler extends ConfigStatusBridgeHandler implement
      * @param who   the WHO
      * @return the ownId
      */
-    public String ownIdFromWhoWhere(String where, String who) {
-        return who + "." + normalizeWhere(where);
+    public String ownIdFromWhoWhere(String where, Who deviceWho) {
+        return deviceWho.value().toString() + "." + normalizeWhere(where, deviceWho);
     }
 
     /**
@@ -585,7 +585,7 @@ public class OpenWebNetBridgeHandler extends ConfigStatusBridgeHandler implement
      * @return the ownId String
      */
     private String ownIdFromMessage(BaseOpenMessage baseMsg) {
-        return baseMsg.getWho().value() + "." + normalizeWhere(baseMsg.getWhere());
+        return baseMsg.getWho().value() + "." + normalizeWhere(baseMsg.getWhere(), baseMsg.getWho());
     }
 
     /**
@@ -595,8 +595,8 @@ public class OpenWebNetBridgeHandler extends ConfigStatusBridgeHandler implement
      * @param where the WHERE address
      * @return the thing Id
      */
-    public String thingIdFromWhere(String where) {
-        return normalizeWhere(where).replace('#', 'h'); // '#' cannot be used in ThingUID;
+    public String thingIdFromWhere(String where, Who deviceWho) {
+        return normalizeWhere(where, deviceWho).replace('#', 'h'); // '#' cannot be used in ThingUID;
     }
 
     /**
@@ -605,16 +605,18 @@ public class OpenWebNetBridgeHandler extends ConfigStatusBridgeHandler implement
      * @param where the WHERE address
      * @return the normalized WHERE
      */
-    public String normalizeWhere(String where) {
+    public String normalizeWhere(String where, Who deviceWho) {
         String str = "";
         if (isBusGateway) {
             if (where.indexOf('#') < 0) { // no hash present
                 str = where;
             } else if (where.indexOf("#4#") > 0) { // local bus: APL#4#bus
                 str = where;
-            } else if (where.indexOf('#') == 0) { // thermo zone via central unit: #0 or #Z (Z=[1-99]) --> Z
+            } else if (where.indexOf('#') == 0 && deviceWho == Who.THERMOREGULATION) { // thermo zone via central unit:
+                                                                                       // #0 or #Z (Z=[1-99]) --> Z
                 str = where.substring(1);
-            } else if (where.indexOf('#') > 0) { // thermo zone and actuator N: Z#N (Z=[1-99], N=[1-9]) -- > Z
+            } else if (where.indexOf('#') > 0 && deviceWho == Who.THERMOREGULATION) { // thermo zone and actuator N: Z#N
+                                                                                      // (Z=[1-99], N=[1-9]) -- > Z
                 str = where.substring(0, where.indexOf('#'));
             } else {
                 logger.warn("==OWN== normalizeWhere() unexpected WHERE: {}", where);

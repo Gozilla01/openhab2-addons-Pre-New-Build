@@ -203,7 +203,7 @@ public class OpenWebNetDeviceDiscoveryService extends AbstractDiscoveryService i
                             deviceType, where);
             }
         }
-        String tId = bridgeHandler.thingIdFromWhere(where);
+        String tId = bridgeHandler.thingIdFromWhere(where, deviceWho);
         ThingUID thingUID = new ThingUID(thingTypeUID, bridgeUID, tId);
 
         DiscoveryResult discoveryResult = null;
@@ -223,11 +223,11 @@ public class OpenWebNetDeviceDiscoveryService extends AbstractDiscoveryService i
                     OpenWebNetBindingConstants.THING_TYPE_ZB_ON_OFF_SWITCH_2UNITS);
         }
         Map<String, Object> properties = new HashMap<>(2);
-        properties.put(OpenWebNetBindingConstants.CONFIG_PROPERTY_WHERE, bridgeHandler.normalizeWhere(where));
+        properties.put(OpenWebNetBindingConstants.CONFIG_PROPERTY_WHERE,
+                bridgeHandler.normalizeWhere(where, deviceWho));
         // properties.put(OpenWebNetBindingConstants.PROPERTY_OWNID,
         // bridgeHandler.ownIdFromWhoWhere(bridgeHandler.normalizeWhere(where), deviceWho.value().toString()));
-        properties.put(OpenWebNetBindingConstants.PROPERTY_OWNID,
-                bridgeHandler.ownIdFromWhoWhere(where, deviceWho.value().toString()));
+        properties.put(OpenWebNetBindingConstants.PROPERTY_OWNID, bridgeHandler.ownIdFromWhoWhere(where, deviceWho));
         if ((deviceType == OpenDeviceType.MULTIFUNCTION_SCENARIO_CONTROL
                 || deviceType == OpenDeviceType.SCENARIO_CONTROL) && baseMsg != null) {
             properties.put(OpenWebNetBindingConstants.CONFIG_PROPERTY_SCENARIO_BUTTONS,
