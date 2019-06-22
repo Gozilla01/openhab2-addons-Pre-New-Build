@@ -111,8 +111,8 @@ Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", pa
 ### openwebnet.items:
 
 ```xtend
-     String       iMyCommand       { channel="openwebnet:bus_command:mybridge:Mycomm:what" }
-     Switch       iMyCommand1      { channel="openwebnet:bus_command:mybridge:Mycomm:switch"}
-     Contact      iMyCommand2      { channel="openwebnet:bus_command:mybridge:Mycomm:contact"}
+String       iMyCommand       { channel="openwebnet:bus_command:mybridge:Mycomm:what" }
+Switch       iMyCommand1      { channel="openwebnet:bus_command:mybridge:Mycomm:switch"}
+Contact      iMyCommand2      { channel="openwebnet:bus_command:mybridge:Mycomm:contact"}
 
 ```
