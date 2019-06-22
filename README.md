@@ -94,3 +94,25 @@ sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
 }
 
 ```
+
+## Bus Command Example
+
+### openwebnet.things:
+
+```xtend
+Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
+{  
+      bus_command       Mycomm         "Command "       [ who ="1" , what="1" , where = "22" ,  whatOff="0", compare ="" ]
+      bus_command       Mycomm1        "Command 1 "     [ who ="1" , what="1" , where = "21" ,  whatOff="0", compare ="*1*1*23##" ]
+      bus_command       Mycomm2        "Command 2 "     [ who ="2" , what="1" , where = "81" ,  whatOff="0", compare ="*1*1*23##" ]
+}
+``` 
+
+### openwebnet.items:
+
+```xtend
+     String       iMyCommand       { channel="openwebnet:bus_command:mybridge:Mycomm:what" }
+     Switch       iMyCommand1      { channel="openwebnet:bus_command:mybridge:Mycomm:switch"}
+     Contact      iMyCommand2      { channel="openwebnet:bus_command:mybridge:Mycomm:contact"}
+
+```
