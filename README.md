@@ -16,7 +16,7 @@
 
 ## Changelog
 
-**v2.5.0.M3.pre4 =IN PROGRESS=** - dd/06/2019
+**v2.5.0.M3.pre4** - 22/06/2019
 
 - Update normalizeWhere
 - [FIX [#52](https://github.com/mvalla/openhab2-addons/issues/52) and [#22](https://github.com/mvalla/openhab2-addons/issues/22)] Add bus Command
