@@ -16,7 +16,14 @@
 
 ## Changelog
 
-**v2.5.0.M3.pre3 =IN PROGRESS=** - dd/06/2019
+**v2.5.0.M3.pre4 =IN PROGRESS=** - dd/06/2019
+
+- Update normalizeWhere
+- [FIX [#52](https://github.com/mvalla/openhab2-addons/issues/52) and [#22](https://github.com/mvalla/openhab2-addons/issues/22)] Add bus Command
+  - **Not fully functional, waiting to resolve the library implementation**
+- **TO DO** file update README.MD
+  
+**v2.5.0.M3.pre3** - 20/06/2019
 
 - Renamed the name of the version from 2.5.0.M4 to 2.5.0.M3
 - After commit cdc8ba1
