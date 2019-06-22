@@ -77,6 +77,10 @@ public class OpenWebNetBindingConstants {
     public static final ThingTypeUID THING_TYPE_BUS_AUX_TOGGLE = new ThingTypeUID(BINDING_ID, "bus_on_off_aux");
     public static final String THING_LABEL_BUS_AUX_TOGGLE = "Auxiliary";
 
+    // COMMAND
+    public static final ThingTypeUID THING_TYPE_BUS_COMMAND = new ThingTypeUID(BINDING_ID, "bus_command");
+    public static final String THING_LABEL_BUS_COMMAND = "Command";
+
     // ZIGBEE
     public static final ThingTypeUID THING_TYPE_ZB_ON_OFF_SWITCH = new ThingTypeUID(BINDING_ID, "zb_on_off_switch");
     public static final String THING_LABEL_ZB_ON_OFF_SWITCH = "ZigBee Switch";
@@ -119,11 +123,15 @@ public class OpenWebNetBindingConstants {
     // ## AUX
     public static final Set<ThingTypeUID> AUX_SUPPORTED_THING_TYPES = new HashSet<>(
             Arrays.asList(THING_TYPE_BUS_AUX_TOGGLE, THING_TYPE_ZB_AUX_SWITCH));
+    // ## Command
+    public static final Set<ThingTypeUID> COMMAND_SUPPORTED_THING_TYPES = new HashSet<>(
+            Arrays.asList(THING_TYPE_BUS_COMMAND));
     // ## Groups
     public static final Set<ThingTypeUID> DEVICE_SUPPORTED_THING_TYPES = Stream
             .of(LIGHTING_SUPPORTED_THING_TYPES, AUTOMATION_SUPPORTED_THING_TYPES,
                     THERMOREGULATION_SUPPORTED_THING_TYPES, ENERGY_SUPPORTED_THING_TYPES,
-                    SCENARIO_SUPPORTED_THING_TYPES, GENERIC_SUPPORTED_THING_TYPES, AUX_SUPPORTED_THING_TYPES)
+                    SCENARIO_SUPPORTED_THING_TYPES, GENERIC_SUPPORTED_THING_TYPES, AUX_SUPPORTED_THING_TYPES,
+                    COMMAND_SUPPORTED_THING_TYPES)
             .flatMap(Collection::stream).collect(Collectors.toCollection(HashSet::new));
 
     // Sets.union(LIGHTING_SUPPORTED_THING_TYPES,
@@ -176,6 +184,11 @@ public class OpenWebNetBindingConstants {
     // auxiliary
     public static final String CHANNEL_AUX = "switch";
 
+    // command
+    public static final String CHANNEL_COMMAND_SWITCH = "switch";
+    public static final String CHANNEL_COMMAND_CONTACT = "contact";
+    public static final String CHANNEL_COMMAND_WHAT = "what";
+
     // devices config properties
     public static final String CONFIG_PROPERTY_WHERE = "where";
     public static final String CONFIG_PROPERTY_SHUTTER_RUN = "shutterRun";
@@ -199,5 +212,9 @@ public class OpenWebNetBindingConstants {
     public static final int PARAMETER_TYPE_AREA = 2;
     public static final int PARAMETER_TYPE_GROUP = 3;
     public static final int PARAMETER_TYPE_GENERAL = 4;
+    // config properties command
+    public static final String CONFIG_PROPERTY_WHO = "who";
+    public static final String CONFIG_PROPERTY_WHATOFF = "whatOff";
+    public static final String CONFIG_PROPERTY_COMPARE = "compare";
 
 }

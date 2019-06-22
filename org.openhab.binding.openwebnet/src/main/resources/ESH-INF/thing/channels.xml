@@ -209,4 +209,18 @@
 		
 	</channel-type>
 	
+	<!-- Command Channel -->
+    <channel-type id="what">
+        <item-type>String</item-type>
+        <label>What</label>
+        <description>String What</description>
+        <category>Command</category>
+    </channel-type>
+    <channel-type id="contact">
+        <item-type>Switch</item-type>
+        <label>Contact</label>
+        <description>Switch the power OPEN and Closed</description>
+        <category>Command</category>
+    </channel-type>
+	
 </thing:thing-descriptions>
