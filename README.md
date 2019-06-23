@@ -127,7 +127,7 @@ sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
      Text 	 item=iMyCommand   label="What [%s]"      icon="door"
      Switch      item=iMyCommand1  label="Switch [%s]"    icon="light"
      Text 	 item=iMyCommand2  label="Contact [%s]"   icon="door"
-     Switch      item=iMyCommand1  label="da Button [%s]" icon="light"  mappings=[ON="ON"]     
+     Switch      item=iMyCommand1  label="da Button [%s]" icon="light"  mappings=[ON="ON" , OFF="OFF"]     
    }
 }
 
