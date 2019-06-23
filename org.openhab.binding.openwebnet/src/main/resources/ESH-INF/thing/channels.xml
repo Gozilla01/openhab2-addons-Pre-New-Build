@@ -217,10 +217,11 @@
         <category>Command</category>
     </channel-type>
     <channel-type id="contact">
-        <item-type>Switch</item-type>
+        <item-type>Contact</item-type>
         <label>Contact</label>
         <description>Switch the power OPEN and Closed</description>
         <category>Command</category>
+        <state pattern="%s" readOnly="true"></state>
     </channel-type>
 	
 </thing:thing-descriptions>

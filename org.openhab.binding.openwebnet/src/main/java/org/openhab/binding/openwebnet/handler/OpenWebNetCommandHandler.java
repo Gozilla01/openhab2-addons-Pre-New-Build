@@ -81,11 +81,8 @@ public class OpenWebNetCommandHandler extends OpenWebNetThingHandler {
             case CHANNEL_SWITCH:
                 handleCommandSwitch(channel, command, who, what, whatOff, where);
                 break;
-            case CHANNEL_COMMAND_CONTACT:
-                logger.debug("CHANNEL_COMMAND_CONTACT {}", command);
-                break;
             case CHANNEL_COMMAND_WHAT:
-                handleCommandWhat(channel, command, who, what, where);
+                handleCommandWhat(channel, command, who, where);
                 break;
             default: {
                 logger.warn("==OWN:CommandHandler== Unsupported channel UID {}", channel);
@@ -104,15 +101,15 @@ public class OpenWebNetCommandHandler extends OpenWebNetThingHandler {
      * @param channel
      * @param command
      * @param who
-     * @param what
      * @param where
      */
-    private void handleCommandWhat(ChannelUID channel, Command command, String who, String what, String where) {
-        logger.debug("==OWN:CommandHandler== handleCommandWhat() (who={} - what={} - channel={})", who, what, channel);
-        if (what != null) {
+    private void handleCommandWhat(ChannelUID channel, Command command, String who, String where) {
+        logger.debug("==OWN:CommandHandler== handleCommandWhat() (who={} - command={} - channel={})", who, command,
+                channel);
+        if (command != null) {
             SendOWN(who, command.toString(), where);
         } else {
-            logger.debug("==OWN:CommandHandler== handleCommandWhat() What is null");
+            logger.debug("==OWN:CommandHandler== handleCommandWhat() command is null");
         }
     }
 
@@ -128,22 +125,22 @@ public class OpenWebNetCommandHandler extends OpenWebNetThingHandler {
      */
     private void handleCommandSwitch(ChannelUID channel, Command command, String who, String what, String whatOff,
             String where) {
-        logger.debug("==OWN:CommandHandler== handleCommandSwitch() (who={} - what={} - channel={})", who, what,
-                channel);
+        logger.debug("==OWN:CommandHandler== handleCommandSwitch() (who={} - what={} - where={} - channel={})", who,
+                what, where, channel);
         if (command instanceof OnOffType) {
             if (OnOffType.ON.equals(command)) {
                 if (what != null) {
                     SendOWN(who, what, where);
                     updateState(CHANNEL_COMMAND_CONTACT, OpenClosedType.OPEN);
                 } else {
-                    logger.debug("==OWN:CommandHandler== handleCommandWhat() What is null");
+                    logger.debug("==OWN:CommandHandler== handleCommandSwitch() What is null");
                 }
             } else if (OnOffType.OFF.equals(command)) {
                 if (whatOff != null) {
                     SendOWN(who, whatOff, where);
                     updateState(CHANNEL_COMMAND_CONTACT, OpenClosedType.CLOSED);
                 } else {
-                    logger.debug("==OWN:CommandHandler== handleCommandWhat() WhatOff is null");
+                    logger.debug("==OWN:CommandHandler== handleCommandSwitch() WhatOff is null");
                 }
             }
         }
