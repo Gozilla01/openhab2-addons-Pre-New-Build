@@ -16,6 +16,10 @@
 
 ## Changelog
 
+**v2.5.0.M3.pre5** - 23/06/2019
+
+- Update channel `what` for bus Command
+  
 **v2.5.0.M3.pre4** - 22/06/2019
 
 - Update normalizeWhere
