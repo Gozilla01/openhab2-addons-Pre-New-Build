@@ -164,7 +164,7 @@ public class OpenWebNetCommandHandler extends OpenWebNetThingHandler {
     @Override
     protected String ownIdPrefix() {
         String compare = "";
-        if (getConfig().get(CONFIG_PROPERTY_ADDRTYPE) != null) {
+        if (getConfig().get(CONFIG_PROPERTY_COMPARE) != null) {
             compare = (String) getConfig().get(CONFIG_PROPERTY_COMPARE);
             compare = "." + compare.replace('#', 'h').replace('*', 'h');
         }
