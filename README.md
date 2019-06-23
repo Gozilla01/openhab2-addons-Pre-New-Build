@@ -102,9 +102,9 @@ sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
 ```xtend
 Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
 {  
-      bus_command       Mycomm         "Command "       [ who ="1" , what="1" , where = "22" ,  whatOff="0", compare ="" ]
-      bus_command       Mycomm1        "Command 1 "     [ who ="1" , what="1" , where = "21" ,  whatOff="0", compare ="*1*1*23##" ]
-      bus_command       Mycomm2        "Command 2 "     [ who ="2" , what="1" , where = "81" ,  whatOff="0", compare ="*1*1*23##" ]
+      bus_command   Mycomm     "Command"       [ who ="1" , what="1" , where = "22" ,  whatOff="0", compare ="" ]
+      bus_command   Mycomm1    "Command 1"     [ who ="1" , what="1" , where = "21" ,  whatOff="0", compare ="*1*1*23##" ]
+      bus_command   Mycomm2    "Command 2"     [ who ="2" , what="1" , where = "81" ,  whatOff="0", compare ="*1*1*23##" ]
 }
 ``` 
 
@@ -114,5 +114,44 @@ Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", pa
 String       iMyCommand       { channel="openwebnet:bus_command:mybridge:Mycomm:what" }
 Switch       iMyCommand1      { channel="openwebnet:bus_command:mybridge:Mycomm:switch"}
 Contact      iMyCommand2      { channel="openwebnet:bus_command:mybridge:Mycomm:contact"}
+
+```
+
+### openwebnet.sitemap
+
+```xtend
+sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
+{
+   Frame label="Command" 
+   {
+     Text 	 item=iMyCommand   label="What [%s]"      icon="door"
+     Switch      item=iMyCommand1  label="Switch [%s]"    icon="light"
+     Text 	 item=iMyCommand2  label="Contact [%s]"   icon="door"
+     Switch      item=iMyCommand1  label="da Button [%s]" icon="light"  mappings=[ON="ON"]     
+   }
+}
+
+```
+
+### openwebnet.rules
+
+```xtend
+// Scenario: Setting channel what
+rule "testCommand"
+when
+        Item Luce_entrata changed 
+then
+        switch(Luce_entrata.state ) {
+            case ON: {
+               logInfo("Test rules testCommand", "success! ON" )
+               iMyCommand.sendCommand("11")
+            }
+            case OFF: {
+               logInfo("Test rules testCommand", "success! OFF" )
+               iMyCommand.sendCommand("0")
+            }
+        }
+           
+end
 
 ```
