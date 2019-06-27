@@ -1,13 +1,13 @@
 # openhab2-addons-Pre-New-Build
 
-## Test Lighting group addresses
+## Test Lighting group addresses (upgrade pre7)
 | Group Command | Discovery Bus Principale | Test Bus Principal | Discovery Bus Local | Bus Local      | Note                             | 
 | ------------- |:------------------------:|:------------------:|:-------------------:| :------------: | ----------------------- |
-| Area          |`OK`                      | `OK`               | `No Test`           | `No Test`      |                         |
-| Group         |`Problem (1)`             | `Problem (1)`      | `No Test`           | `No Test`      | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `1.1` instead of `1.#1`       |
-| General       |`OK`                      | `OK (1)`           | `No Test`           | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???` 
+| Area          |`OK`                      | `OK`               | `OK`                | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff invalid integer format      |
+| Group         |`OK`                      | `Problem (1)`      | `OK`                | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff invalid integer format      |
+| General       |`OK`                      | `OK (2)`           | `OK`                | `Problem (1)`      | **`(1)`**  requestTurnOn and requestTurnOff allowed value [0]</br>**`(2)`** By sending the command, the group and area handlers are also called, `correct ???`
 
-## Test Automation group addresses
+## Test Automation group addresses (upgrade pre6)
 | Group Command | Discovery Bus Principale | Bus Principal    | Discovery Bus Principale | Bus Local      | Note                      | 
 | ------------- |:------------------------:| :--------------: |:------------------------:| :------------: | ------------------------- |
 | Area          | `OK`                     | `OK`             | `No Test`                | `No Test`      |                           |
@@ -15,6 +15,12 @@
 | General       | `OK`                     | `OK (1)`         | `No Test`                | `No Test`      | **`(1)`** By sending the command, the group and area handlers are also called, `correct ???`   |
 
 ## Changelog
+
+**v2.5.0.M3.pre7** ** IN PROGRESS** - dd/06/2019
+
+- Fix bug `normalizeWhere` for group command with local bus
+- Fix bug `isArea` for group command with local bus
+- Fix bug `isGroup` for group command with local bus
 
 **v2.5.0.M3.pre6** - 23/06/2019
 
