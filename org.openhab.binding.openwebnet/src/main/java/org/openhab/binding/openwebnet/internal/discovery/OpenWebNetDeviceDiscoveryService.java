@@ -288,7 +288,7 @@ public class OpenWebNetDeviceDiscoveryService extends AbstractDiscoveryService i
         if (where.indexOf("#4#") > 0) {
             wheretmp = where.substring(0, where.indexOf("#4#"));
         }
-        if (wheretmp.indexOf("#") == -1) {
+        if (wheretmp.indexOf("#") == -1 && (wheretmp.indexOf("0") != 0)) {
             A = Integer.parseInt(wheretmp);
             if ((A >= 1 && A <= 9) || A == 100) {
                 logger.debug("==OWN:DeviceDiscovery== isArea() where:{} is Area", where);
@@ -307,8 +307,12 @@ public class OpenWebNetDeviceDiscoveryService extends AbstractDiscoveryService i
     public boolean isGroup(String where) {
         String wheretmp = where;
         int A = 0;
-        if (where.indexOf("#4#") > 0) {
-            wheretmp = where.substring(0, where.indexOf("#4#"));
+        if (where.indexOf("#4#") != -1) {
+            if (where.indexOf("#4#4#") == 0) {
+                wheretmp = where.substring(0, 2);
+            } else {
+                wheretmp = where.substring(0, where.indexOf("#4#"));
+            }
         }
         if (wheretmp.indexOf('#') >= 0) {
             wheretmp = wheretmp.substring(wheretmp.indexOf('#') + 1, wheretmp.length());

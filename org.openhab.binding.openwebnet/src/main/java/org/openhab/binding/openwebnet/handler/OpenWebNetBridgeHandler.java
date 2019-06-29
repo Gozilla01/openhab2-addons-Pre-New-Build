@@ -445,10 +445,12 @@ public class OpenWebNetBridgeHandler extends ConfigStatusBridgeHandler implement
             if (deviceHandler != null && deviceHandler.ownIdPrefix().equals(who)) {
                 if (deviceDiscoveryService.isGeneral(baseMsg.getWhere())) {
                     // General
-                    deviceHandler.handleMessage(baseMsg);
+                    if (isCompareLocalBus(baseMsg, ownIdkey)) {
+                        deviceHandler.handleMessage(baseMsg);
+                    }
                 } else {
                     // Area
-                    if (isCompareA(baseMsg, ownIdkey)) {
+                    if (isCompareALocalBus(baseMsg, ownIdkey)) {
                         deviceHandler.handleMessage(baseMsg);
                     }
                 }
@@ -622,7 +624,7 @@ public class OpenWebNetBridgeHandler extends ConfigStatusBridgeHandler implement
         if (isBusGateway) {
             if (where.indexOf('#') < 0) { // no hash present
                 str = where;
-            } else if (where.indexOf("#4#") > 0) { // local bus: APL#4#bus
+            } else if (where.indexOf("#4#") != -1) { // local bus: APL#4#bus
                 str = where;
             } else if (where.indexOf('#') == 0 && deviceWho == Who.THERMOREGULATION) { // thermo zone via central unit:
                                                                                        // #0 or #Z (Z=[1-99]) --> Z
@@ -649,24 +651,41 @@ public class OpenWebNetBridgeHandler extends ConfigStatusBridgeHandler implement
     // TODO push down in the OWN lib
     private boolean isLocalBus(BaseOpenMessage baseMsg) {
         String where = baseMsg.getWhere();
-        if (where.indexOf("#4#") > 0) {
+        if (where.indexOf("#4#") >= 0) {
             return true;
         }
         return false;
     }
 
     /**
-     * Compare where between baseMsg and ownId
+     * Compare where and local bus between baseMsg and ownId
      *
      * @param BaseOpenMessage baseMsg
      * @param String          ownId
      * @return boolean
      */
-    private boolean isCompareA(BaseOpenMessage baseMsg, String ownId) {
+    private boolean isCompareALocalBus(BaseOpenMessage baseMsg, String ownId) {
         String ownIdwhere = ownId.substring(ownId.indexOf('.') + 1, ownId.length());
-        String AownId = getA(ownIdwhere);
-        String Amsg = getA(baseMsg.getWhere());
+        String AownId = getA(ownIdwhere) + getLocalBus(ownIdwhere);
+        String Amsg = getA(baseMsg.getWhere()) + getLocalBus(baseMsg.getWhere());
         if (AownId.equals(Amsg)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Compare local bus between baseMsg and ownId
+     *
+     * @param BaseOpenMessage baseMsg
+     * @param String          ownId
+     * @return boolean
+     */
+    private boolean isCompareLocalBus(BaseOpenMessage baseMsg, String ownId) {
+        String ownIdwhere = ownId.substring(ownId.indexOf('.') + 1, ownId.length());
+        String LownId = getLocalBus(ownIdwhere);
+        String Lmsg = getLocalBus(baseMsg.getWhere());
+        if (LownId.equals(Lmsg)) {
             return true;
         }
         return false;
@@ -697,6 +716,25 @@ public class OpenWebNetBridgeHandler extends ConfigStatusBridgeHandler implement
                 logger.debug("==OWN==  BridgeHandler - getA error extract where:{}", where);
                 return "";
         }
+    }
+
+    /**
+     * Get Local bus from where
+     *
+     * @param String where
+     * @return String Local bus
+     */
+    // TODO push down in the OWN lib
+    private String getLocalBus(String where) {
+        String local = "";
+        if (where.indexOf("#4#") != -1) {
+            if (where.indexOf("#4#4#") == 0) {
+                local = where.substring(2, where.length());
+            } else {
+                local = where.substring(where.indexOf("#4#"), where.length());
+            }
+        }
+        return local;
     }
 
 }
