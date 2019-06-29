@@ -16,11 +16,14 @@
 
 ## Changelog
 
-**v2.5.0.M3.pre7** ** IN PROGRESS** - dd/06/2019
+**v2.5.0.M3.pre7** - 29/06/2019
 
-- Fix bug `normalizeWhere` for group command with local bus
-- Fix bug `isArea` for group command with local bus
-- Fix bug `isGroup` for group command with local bus
+- Fix bug `normalizeWhere` for group command with different local bus
+- Fix bug `isArea` for group command with different local bus
+- Fix bug `isGroup` for group command with different local bus
+- Fix bug `isGeneral` for group command with different local bus
+- Fix bug `isCompareALocalBus` for group command with different local bus
+- Fix bug `isCompareLocalBus` for group command with different local bus
 
 **v2.5.0.M3.pre6** - 23/06/2019
 
