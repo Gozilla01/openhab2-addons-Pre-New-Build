@@ -12,7 +12,7 @@
 | ------------- |:------------------------:| :--------------: |:------------------------:| :------------: | ------------------------- |
 | Area          | `OK`                     | `OK`             | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown invalid integer format                           |
 | Group         | `OK`                     | `Problem (1)`    | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown invalid integer format   |
-| General       | `OK`                     | `OK (2)`         | `OK`                     | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff allowed value [0]</br>**`(2)`** By sending the command, the group and area handlers are also called, `correct ???`   |
+| General       | `OK`                     | `OK (2)`         | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown allowed value [0]</br>**`(2)`** By sending the command, the group and area handlers are also called, `correct ???`   |
 
 ## Changelog
 
