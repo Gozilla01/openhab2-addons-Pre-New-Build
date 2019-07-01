@@ -11,7 +11,7 @@
 | Group Command | Discovery Bus Principale | Bus Principal    | Discovery Bus Principale | Bus Local      | Note                      | 
 | ------------- |:------------------------:| :--------------: |:------------------------:| :------------: | ------------------------- |
 | Area          | `OK`                     | `OK`             | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown invalid integer format                           |
-| Group         | `Problem (1)`            | `Problem (1)`    | `OK`                     | `Problem (1)`  | **`(1)`** OwnId problem creation, see bridgeHandler.ownIdFromWhoWhere().<br>Es. `2.1` instead of `2.#1`   |
+| Group         | `OK`                     | `Problem (1)`    | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown invalid integer format   |
 | General       | `OK`                     | `OK (2)`         | `OK`                     | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff allowed value [0]</br>**`(2)`** By sending the command, the group and area handlers are also called, `correct ???`   |
 
 ## Changelog
