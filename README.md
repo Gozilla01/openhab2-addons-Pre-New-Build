@@ -18,12 +18,13 @@
 
 **v2.5.0.M3.pre8alfa** IN PROGRESS - dd/07/2019
 
-- Add new bus `bus_motion_detector` for motion decector type BMSE-3003 (movement and lux value detected)
+- Add new bus `bus_motion_detector` for motion decector (movement and lux value detected)
+  - Tested with type `BMSE-3003` , `BMSE-1001` and `048834` 
   - Discovery
   - Request lux value with the initialization of things
   - Parameter `where`
-  - Channel `switch` state `ON` to the movement and `OFF` automatically after 2 seconds
-  - Channel `value` numeric with detected value
+  - Channel `switch` state `ON` to the movement and after 2 seconds automatically `OFF`
+  - Channel `value` numeric with detected value lux
 
 **v2.5.0.M3.pre7** - 29/06/2019
 
