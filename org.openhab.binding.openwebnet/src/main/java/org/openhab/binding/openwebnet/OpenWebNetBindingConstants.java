@@ -81,6 +81,11 @@ public class OpenWebNetBindingConstants {
     public static final ThingTypeUID THING_TYPE_BUS_COMMAND = new ThingTypeUID(BINDING_ID, "bus_command");
     public static final String THING_LABEL_BUS_COMMAND = "Command";
 
+    // MOTION DETECTOR
+    public static final ThingTypeUID THING_TYPE_BUS_MOTION_DETECTOR = new ThingTypeUID(BINDING_ID,
+            "bus_motion_detector");
+    public static final String THING_LABEL_BUS_DETECTOR = "Motion Detector";
+
     // ZIGBEE
     public static final ThingTypeUID THING_TYPE_ZB_ON_OFF_SWITCH = new ThingTypeUID(BINDING_ID, "zb_on_off_switch");
     public static final String THING_LABEL_ZB_ON_OFF_SWITCH = "ZigBee Switch";
@@ -126,12 +131,15 @@ public class OpenWebNetBindingConstants {
     // ## Command
     public static final Set<ThingTypeUID> COMMAND_SUPPORTED_THING_TYPES = new HashSet<>(
             Arrays.asList(THING_TYPE_BUS_COMMAND));
+    // ## Motion Detector
+    public static final Set<ThingTypeUID> MOTION_DETECTOR_SUPPORTED_THING_TYPES = new HashSet<>(
+            Arrays.asList(THING_TYPE_BUS_MOTION_DETECTOR));
     // ## Groups
     public static final Set<ThingTypeUID> DEVICE_SUPPORTED_THING_TYPES = Stream
             .of(LIGHTING_SUPPORTED_THING_TYPES, AUTOMATION_SUPPORTED_THING_TYPES,
                     THERMOREGULATION_SUPPORTED_THING_TYPES, ENERGY_SUPPORTED_THING_TYPES,
                     SCENARIO_SUPPORTED_THING_TYPES, GENERIC_SUPPORTED_THING_TYPES, AUX_SUPPORTED_THING_TYPES,
-                    COMMAND_SUPPORTED_THING_TYPES)
+                    COMMAND_SUPPORTED_THING_TYPES, MOTION_DETECTOR_SUPPORTED_THING_TYPES)
             .flatMap(Collection::stream).collect(Collectors.toCollection(HashSet::new));
 
     // Sets.union(LIGHTING_SUPPORTED_THING_TYPES,
@@ -188,6 +196,10 @@ public class OpenWebNetBindingConstants {
     public static final String CHANNEL_COMMAND_SWITCH = "switch";
     public static final String CHANNEL_COMMAND_CONTACT = "contact";
     public static final String CHANNEL_COMMAND_WHAT = "what";
+
+    // motion detector
+    public static final String CHANNEL_MOTION_DETECTOR_SWITCH = "switch";
+    public static final String CHANNEL_MOTION_DETECTOR_VALUE = "value";
 
     // devices config properties
     public static final String CONFIG_PROPERTY_WHERE = "where";
