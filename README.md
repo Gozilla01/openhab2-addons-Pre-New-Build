@@ -16,6 +16,15 @@
 
 ## Changelog
 
+**v2.5.0.M3.pre8alfa** IN PROGRESS - dd/07/2019
+
+- Add new bus `bus_motion_detector` for motion decector type BMSE-3003 (movement and lux value detected)
+  - Discovery
+  - Request lux value with the initialization of things
+  - Parameter `where`
+  - Channel `switch` state `ON` to the movement and `OFF` automatically after 2 seconds
+  - Channel `value` numeric with detected value
+
 **v2.5.0.M3.pre7** - 29/06/2019
 
 - Fix bug `normalizeWhere` for group command with different local bus
