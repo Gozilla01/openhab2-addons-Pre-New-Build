@@ -20,7 +20,7 @@
 
 - Add new bus `bus_motion_detector` for motion decector (movement and lux value detected)
   - Tested with type `BMSE-3003` , `BMSE-1001` and `048834` 
-  - Discovery
+  - Discovered only with `discoveryByActivation = true`
   - Request lux value with the initialization of things
   - Parameter `where`
   - Channel `switch` state `ON` to the movement and after 2 seconds automatically `OFF`
