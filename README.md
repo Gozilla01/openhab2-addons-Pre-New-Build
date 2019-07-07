@@ -16,7 +16,7 @@
 
 ## Changelog
 
-**v2.5.0.M3.pre8alfa** IN PROGRESS - dd/07/2019
+**v2.5.0.M3.pre8alfa** 07/07/2019
 
 - Add new bus `bus_motion_detector` for motion decector (movement and lux value detected)
   - Tested with type `BMSE-3003` , `BMSE-1001` and `048834` 
@@ -25,6 +25,7 @@
   - Parameter `where`
   - Channel `switch` state `ON` to the movement and after 2 seconds automatically `OFF`
   - Channel `value` numeric with detected value lux
+- Update BusAuxToggle.xml
 
 **v2.5.0.M3.pre7** - 29/06/2019
 
