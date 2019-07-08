@@ -28,7 +28,7 @@ last test upgrade pre7
 
 ### Changelog
 
-**v2.5.0.M3.pre8alfa** 07/07/2019
+**v2.5.0.M3.pre8** 07/07/2019
 
 - Add new bus `bus_motion_detector` for motion decector (movement and lux value detected)
   - Tested with type `BMSE-3003` , `BMSE-1001` and `048834` 
