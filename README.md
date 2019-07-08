@@ -1,20 +1,32 @@
 # openhab2-addons-Pre-New-Build
 
-## Test Lighting group addresses (upgrade pre7)
+## Documentation
+- [Test Lighting group addresses](#test-lighting-group-addresses)
+- [Test Automation group addresses](#test-automation-group-addresses)
+- [Changelog](#changelog)
+- [Group Example](#group-example)
+- [Bus Command Example](#bus-command-example)
+
+
+### Test Lighting group addresses
+last test upgrade pre7
+
 | Group Command | Discovery Bus Principale | Bus Principal      | Discovery Bus Local | Bus Local      | Note                    | 
 | ------------- |:------------------------:|:------------------:|:-------------------:| :------------: | ----------------------- |
 | Area          |`OK`                      | `OK`               | `OK`                | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff invalid integer format      |
 | Group         |`OK`                      | `Problem (1)`      | `OK`                | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff invalid integer format      |
 | General       |`OK`                      | `OK (2)`           | `OK`                | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff allowed value [0]</br>**`(2)`** By sending the command, the group and area handlers are also called, `correct ???`
 
-## Test Automation group addresses (upgrade pre7)
+### Test Automation group addresses
+last test upgrade pre7
+
 | Group Command | Discovery Bus Principale | Bus Principal    | Discovery Bus Principale | Bus Local      | Note                      | 
 | ------------- |:------------------------:| :--------------: |:------------------------:| :------------: | ------------------------- |
 | Area          | `OK`                     | `OK`             | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown invalid integer format                           |
 | Group         | `OK`                     | `Problem (1)`    | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown invalid integer format   |
 | General       | `OK`                     | `OK (2)`         | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown allowed value [0]</br>**`(2)`** By sending the command, the group and area handlers are also called, `correct ???`   |
 
-## Changelog
+### Changelog
 
 **v2.5.0.M3.pre8alfa** 07/07/2019
 
@@ -85,9 +97,9 @@
 
 
 
-## Group Example
+### Group Example
 
-### openwebnet.things:
+**openwebnet.things:**
 
 ```xtend
 Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
@@ -97,7 +109,7 @@ Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", pa
 }
 ``` 
 
-### openwebnet.items:
+**openwebnet.items:**
 
 ```xtend
 Switch   ILR_testArea1   "Group 1-2 AREA"   { channel="openwebnet:bus_on_off_switch:mybridge:MygroupArea:switch"}
@@ -105,7 +117,7 @@ Switch   ILR_testGen1    "Group 1-GEN"      { channel="openwebnet:bus_on_off_swi
 
 ```
 
-### openwebnet.sitemap
+**openwebnet.sitemap**
 
 ```xtend
 sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
@@ -124,9 +136,9 @@ sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
 
 ```
 
-## Bus Command Example
+### Bus Command Example
 
-### openwebnet.things:
+**openwebnet.things:**
 
 ```xtend
 Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
@@ -137,7 +149,7 @@ Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", pa
 }
 ``` 
 
-### openwebnet.items:
+**openwebnet.items:**
 
 ```xtend
 String       iMyCommand       { channel="openwebnet:bus_command:mybridge:Mycomm:what" }
@@ -146,7 +158,7 @@ Contact      iMyCommand2      { channel="openwebnet:bus_command:mybridge:Mycomm:
 
 ```
 
-### openwebnet.sitemap
+**openwebnet.sitemap**
 
 ```xtend
 sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
@@ -162,7 +174,7 @@ sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
 
 ```
 
-### openwebnet.rules
+**openwebnet.rules**
 
 ```xtend
 // Scenario: Setting channel what
