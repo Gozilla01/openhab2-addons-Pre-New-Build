@@ -1,12 +1,23 @@
 # openhab2-addons-Pre-New-Build
 
-## Documentation
+
+### Index
+- [Bus and Channels](#bus-and-channels)
 - [Test Lighting group addresses](#test-lighting-group-addresses)
 - [Test Automation group addresses](#test-automation-group-addresses)
 - [Changelog](#changelog)
 - [Group Example](#group-example)
 - [Bus Command Example](#bus-command-example)
 
+### Bus and Channels
+
+Devices support some of the following channels:
+
+| Bus Name          |  Description bus       |Parameter</br>Type</br>Description       |Channel</br>Type (Read/Write)</br>Description | 
+|-------------------|------------------------|-------------------------|--------------------------|
+|`bus_on_off_aux`   |WHO=9 command auxiliary |`where`</br>String</br>Value where OWN| `switch`</br>Switch (R/W)</br>To switch the device `ON` and `OFF`                |    |                                     |       |
+|`bus_motion_detector`   |WHO=1 motion decector</br>(movement and lux value detected) |`where`</br>String</br>Value where OWN| `switch`</br>Switch (R)</br>To switch the device `ON` and automatic `OFF` after 2 seconds</br>`value`</br>Integer (R)</br>Detected lux value |
+|`bus_command`   |command management |`who`</br>String</br>Value who OWN</br>`what`</br>String</br>Value what OWN for ON</br>`whatOff`</br>String</br>Value what OWN for OFF</br>`compare`</br>String</br>Code OWN for comparison|  `switch`</br>Switch (R/W)</br>To switch the device `ON` and `OFF`</br>`contact`</br>Switch (R/W)</br>To switch the device `OPEN` and `CLOSE`</br>`what`</br>String (W)</br>Set the value what OWN               |  
 
 ### Test Lighting group addresses
 last test upgrade pre7
