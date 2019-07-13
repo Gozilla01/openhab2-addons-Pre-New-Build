@@ -70,11 +70,15 @@ public class OpenWebNetMotionDetectorHandler extends OpenWebNetThingHandler {
         // is not possible to request channel state for Command buttons
         updateStatus(ThingStatus.ONLINE);
         updateState(channel, UnDefType.UNDEF);
-        requestLux();
+        if (channel.getId().equals(CHANNEL_MOTION_DETECTOR_VALUE)) {
+            requestLux();
+        }
     }
 
     @Override
     protected void handleChannelCommand(ChannelUID channel, Command command) {
+        logger.debug("==OWN:MotionDetectorHandler== handleChannelCommand() command={} channel={}", command,
+                channel.getId());
     }
 
     @Override
@@ -129,6 +133,7 @@ public class OpenWebNetMotionDetectorHandler extends OpenWebNetThingHandler {
     private void requestLux() {
         String commandOWN = OpenMessage.FRAME_START + "#1*" + deviceWhere + "*" + REQUEST_CHANNEL
                 + OpenMessage.FRAME_END;
+        logger.debug("==OWN:MotionDetectorHandler== requestLux() deviceWhere:{}", deviceWhere);
         bridgeHandler.gateway.send(OpenMessageFactory.parse(commandOWN));
     }
 
