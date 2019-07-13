@@ -41,6 +41,10 @@ last test upgrade pre7
 
 ### Changelog
 
+**v2.5.0.M3.pre9** IN PROGRESS dd/07/2019
+
+- Update request for bus `bus_motion_detector`
+
 **v2.5.0.M3.pre8** 07/07/2019
 
 - Add new bus `bus_motion_detector` for motion decector (movement and lux value detected)
