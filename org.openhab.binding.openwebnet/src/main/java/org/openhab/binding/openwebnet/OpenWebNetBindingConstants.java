@@ -228,5 +228,6 @@ public class OpenWebNetBindingConstants {
     public static final String CONFIG_PROPERTY_WHO = "who";
     public static final String CONFIG_PROPERTY_WHATOFF = "whatOff";
     public static final String CONFIG_PROPERTY_COMPARE = "compare";
-
+    // config properties MotionDetector
+    public static final String CONFIG_PROPERTY_AUTOMATICTOOFF = "automaticToOff";
 }

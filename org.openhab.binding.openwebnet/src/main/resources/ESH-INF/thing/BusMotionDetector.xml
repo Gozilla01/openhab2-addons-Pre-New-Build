@@ -33,6 +33,13 @@
                 <description>Example: Number Auxiliary 8 --> WHERE=8. On local bus: WHERE=8#4#01</description>
                 <required>true</required>
             </parameter>
+            
+            <parameter name="automaticToOff" type="boolean">
+                <label>Schedule to Off</label>
+                <description>Automatic change to the OFF state after 2 seconds (default: false)</description>
+                <required>false</required>
+                <default>false</default>
+            </parameter>
         </config-description>
 
     </thing-type>
