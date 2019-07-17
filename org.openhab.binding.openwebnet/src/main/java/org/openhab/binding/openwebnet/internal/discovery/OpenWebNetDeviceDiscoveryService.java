@@ -95,9 +95,9 @@ public class OpenWebNetDeviceDiscoveryService extends AbstractDiscoveryService i
     /**
      * Create and notify to Inbox a new DiscoveryResult based on where, OpenDeviceType and BaseOpenMessage
      *
-     * @param where      the discovered device's address (WHERE)
+     * @param where the discovered device's address (WHERE)
      * @param deviceType {@link OpenDeviceType} of the discovered device
-     * @param message    the OWN message received that identified the device (optional)
+     * @param message the OWN message received that identified the device (optional)
      */
     public void newDiscoveryResult(String where, OpenDeviceType deviceType, BaseOpenMessage baseMsg) {
         logger.info("==OWN:DeviceDiscovery== newDiscoveryResult() WHERE={}, deviceType={}", where, deviceType);
@@ -199,6 +199,12 @@ public class OpenWebNetDeviceDiscoveryService extends AbstractDiscoveryService i
                     deviceWho = Who.AUX;
                     break;
                 }
+                // case SCS_SCENARIO_PROGRAMMING: {
+                // thingTypeUID = OpenWebNetBindingConstants.THING_TYPE_BUS_SCENES;
+                // thingLabel = OpenWebNetBindingConstants.THING_LABEL_BUS_SCENES;
+                // deviceWho = Who.SCENARIO_PROGRAMMING;
+                // break;
+                // }
                 case ZIGBEE_AUXILIARY_ON_OFF_1_GANG_SWITCH: {
                     thingTypeUID = OpenWebNetBindingConstants.THING_TYPE_ZB_AUX_SWITCH;
                     thingLabel = OpenWebNetBindingConstants.THING_LABEL_ZB_AUX_SWITCH;

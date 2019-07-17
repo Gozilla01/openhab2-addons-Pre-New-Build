@@ -37,6 +37,7 @@ import org.openhab.binding.openwebnet.handler.OpenWebNetGenericHandler;
 import org.openhab.binding.openwebnet.handler.OpenWebNetLightingHandler;
 import org.openhab.binding.openwebnet.handler.OpenWebNetMotionDetectorHandler;
 import org.openhab.binding.openwebnet.handler.OpenWebNetScenarioHandler;
+import org.openhab.binding.openwebnet.handler.OpenWebNetScenesHandler;
 import org.openhab.binding.openwebnet.handler.OpenWebNetThermoregulationHandler;
 import org.openhab.binding.openwebnet.internal.discovery.OpenWebNetDeviceDiscoveryService;
 import org.osgi.framework.ServiceRegistration;
@@ -98,6 +99,9 @@ public class OpenWebNetHandlerFactory extends BaseThingHandlerFactory {
         } else if (OpenWebNetMotionDetectorHandler.SUPPORTED_THING_TYPES.contains(thing.getThingTypeUID())) {
             logger.debug("==OWN:HandlerFactory== creating NEW Motion Detector Handler");
             return new OpenWebNetMotionDetectorHandler(thing);
+        } else if (OpenWebNetMotionDetectorHandler.SUPPORTED_THING_TYPES.contains(thing.getThingTypeUID())) {
+            logger.debug("==OWN:HandlerFactory== creating NEW Scenes Programming Handler");
+            return new OpenWebNetScenesHandler(thing);
         }
         logger.warn("==OWN:HandlerFactory== ThingType: {} is not supported by this binding", thing.getThingTypeUID());
         return null;
