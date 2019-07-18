@@ -8,6 +8,7 @@
 - [Changelog](#changelog)
 - [Group Example](#group-example)
 - [Bus Command Example](#bus-command-example)
+- [Bus Motion Detector Example](#bus-motion-detector-example)
 
 ### Bus and Channels
 
@@ -18,7 +19,7 @@ Devices support some of the following channels:
 |`bus_on_off_switch`   |WHO=1 Lightning |`where`</br>String</br>Value where OWN</br>`what`</br>Integer (default = 0)</br>Value what OWN</br>`addrtype`</br>Integer (default = 1)</br>Address type 1= Point to Point, 2= Area, 3= Group, 4= General| `switch`</br>Switch (R/W)</br>To switch the device `ON` and `OFF`                |
 |`bus_automation`   |WHO=2 Automation |`where`</br>String</br>Value where OWN</br>`addrtype`</br>Integer (default = 1)</br>Address type 1= Point to Point, 2= Area, 3= Group, 4= General| `shutterPosition`</br>Rollershutter (R/W)</br>To activate roller shutters (UP, DOWN, STOP, Percent)</br>`shutterMotion`</br>Integer (R)</br>Roller shutter movement 0= stop, 1= up, 2= down               |
 |`bus_on_off_aux`   |WHO=9 command auxiliary |`where`</br>String</br>Value where OWN| `switch`</br>Switch (R/W)</br>To switch the device `ON` and `OFF`                |  
-|`bus_motion_detector`   |WHO=1 motion decector</br>(movement and lux value detected) |`where`</br>String</br>Value where OWN| `switch`</br>Switch (R)</br>To switch the device `ON` and automatic `OFF` after 2 seconds</br>`value`</br>Integer (R)</br>Detected lux value |
+|`bus_motion_detector`   |WHO=1 motion decector</br>(movement and lux value detected) |`where`</br>String</br>Value where OWN</br>`automaticToOff`</br>Boolean</br>Automatic `OFF` after 2 seconds (default=false)| `switch`</br>Switch (R)</br>To switch the device ON/OFF</br>`value`</br>Integer (R)</br>Detected lux value |
 |`bus_command`   |command management |`who`</br>String</br>Value who OWN</br>`what`</br>String</br>Value what OWN for ON</br>`whatOff`</br>String</br>Value what OWN for OFF</br>`compare`</br>String</br>Code OWN for comparison|  `switch`</br>Switch (R/W)</br>To switch the device `ON` and `OFF`</br>`contact`</br>Switch (R/W)</br>To switch the device `OPEN` and `CLOSE`</br>`what`</br>String (W)</br>Set the value what OWN               |  
 
 ### Test Lighting group addresses
@@ -41,9 +42,13 @@ last test upgrade pre7
 
 ### Changelog
 
-**v2.5.0.M3.pre9** IN PROGRESS dd/07/2019
+**v2.5.0.M3.pre9** 18/07/2019
 
-- Update request for bus `bus_motion_detector`
+- Update for bus `bus_motion_detector`
+  - Update request
+  - Added OFF state management (WHAT = 39)
+  - Addes parameter `automaticToOff`
+  - Other minor corrections
 
 **v2.5.0.M3.pre8** 07/07/2019
 
@@ -211,5 +216,24 @@ then
         }
            
 end
+
+```
+
+### Bus Motion Detector Example
+
+**openwebnet.things:**
+
+```xtend
+Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
+{  
+      bus_motion_detector   Mymotion     "Motion"       [ where = "22" ,  automaticToOff = false]
+}
+``` 
+
+**openwebnet.items:**
+
+```xtend
+Switch       iMymotion      { channel="openwebnet:bus_command:mybridge:Mymotion:switch"}
+Number       iMymotion      { channel="openwebnet:bus_command:mybridge:Mymotion:value"}
 
 ```
