@@ -95,9 +95,9 @@ public class OpenWebNetDeviceDiscoveryService extends AbstractDiscoveryService i
     /**
      * Create and notify to Inbox a new DiscoveryResult based on where, OpenDeviceType and BaseOpenMessage
      *
-     * @param where      the discovered device's address (WHERE)
+     * @param where the discovered device's address (WHERE)
      * @param deviceType {@link OpenDeviceType} of the discovered device
-     * @param message    the OWN message received that identified the device (optional)
+     * @param message the OWN message received that identified the device (optional)
      */
     public void newDiscoveryResult(String where, OpenDeviceType deviceType, BaseOpenMessage baseMsg) {
         logger.info("==OWN:DeviceDiscovery== newDiscoveryResult() WHERE={}, deviceType={}", where, deviceType);
@@ -119,7 +119,8 @@ public class OpenWebNetDeviceDiscoveryService extends AbstractDiscoveryService i
                     break;
                 }
                 case SCS_ON_OFF_SWITCH: {
-                    if (baseMsg.getWhat().equals(WHAT.MOVEMENT_DETECTED)) {
+                    if (baseMsg.getWhat().equals(WHAT.MOVEMENT_DETECTED)
+                            || baseMsg.getWhat().equals(WHAT.END_MOVEMENT_DETECTED)) {
                         thingTypeUID = OpenWebNetBindingConstants.THING_TYPE_BUS_MOTION_DETECTOR;
                         thingLabel = OpenWebNetBindingConstants.THING_LABEL_BUS_DETECTOR;
                         deviceWho = Who.LIGHTING;

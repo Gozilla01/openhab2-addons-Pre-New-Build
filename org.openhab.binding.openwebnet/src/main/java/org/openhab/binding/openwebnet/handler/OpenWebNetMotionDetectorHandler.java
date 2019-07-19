@@ -29,6 +29,7 @@ import org.eclipse.smarthome.core.types.UnDefType;
 import org.openhab.binding.openwebnet.OpenWebNetBindingConstants;
 import org.openwebnet.message.BaseOpenMessage;
 import org.openwebnet.message.Lighting;
+import org.openwebnet.message.Lighting.WHAT;
 import org.openwebnet.message.OpenMessage;
 import org.openwebnet.message.OpenMessageFactory;
 import org.slf4j.Logger;
@@ -62,12 +63,15 @@ public class OpenWebNetMotionDetectorHandler extends OpenWebNetThingHandler {
     public void initialize() {
         super.initialize();
         logger.debug("==OWN:MotionDetectorHandler== initialize() thing={}", thing.getUID());
-        if (getConfig().get(CONFIG_PROPERTY_AUTOMATICTOOFF) instanceof java.lang.Boolean) {
-            automaticToOff = (boolean) getConfig().get(CONFIG_PROPERTY_AUTOMATICTOOFF);
-        } else {
-            logger.warn(
-                    "==OWN== invalid discoveryByActivation parameter value (should be true/false). Keeping current value={}.",
-                    automaticToOff);
+        if (bridgeHandler != null && bridgeHandler.isBusGateway()) {
+            lightingType = Lighting.Type.POINT_TO_POINT;
+            if (getConfig().get(CONFIG_PROPERTY_AUTOMATICTOOFF) instanceof java.lang.Boolean) {
+                automaticToOff = (boolean) getConfig().get(CONFIG_PROPERTY_AUTOMATICTOOFF);
+            } else {
+                logger.warn(
+                        "==OWN== invalid discoveryByActivation parameter value (should be true/false). Keeping current value={}.",
+                        automaticToOff);
+            }
         }
     }
 
@@ -79,7 +83,7 @@ public class OpenWebNetMotionDetectorHandler extends OpenWebNetThingHandler {
         updateStatus(ThingStatus.ONLINE);
         updateState(channel, UnDefType.UNDEF);
         if (channel.getId().equals(CHANNEL_MOTION_DETECTOR_VALUE)) {
-            requestValueLux();
+            requestValueMovementLux(toWhere(channel));
         }
     }
 
@@ -87,6 +91,15 @@ public class OpenWebNetMotionDetectorHandler extends OpenWebNetThingHandler {
     protected void handleChannelCommand(ChannelUID channel, Command command) {
         logger.debug("==OWN:MotionDetectorHandler== handleChannelCommand() command={} channel={}", command,
                 channel.getId());
+        if (command instanceof OnOffType) {
+            if (OnOffType.ON.equals(command)) {
+                requestTurnMovementOn(toWhere(channel));
+            } else if (OnOffType.OFF.equals(command)) {
+                requestTurnMovementOFF(toWhere(channel));
+            }
+        } else {
+            logger.warn("==OWN:MotionDetectorHandler== Unsupported command: {}", command);
+        }
     }
 
     @Override
@@ -163,22 +176,40 @@ public class OpenWebNetMotionDetectorHandler extends OpenWebNetThingHandler {
      **/
     private void ScheduleToOff(String channel) {
         scheduler.schedule(() -> {
-            logger.debug(
-                    "==OWN:MotionDetectorHandler== ScheduleReleased() # " + deviceWhere + " sending virtual UnDef...");
+            logger.debug("==OWN:MotionDetectorHandler== ScheduleReleased() # " + toWhere(channel)
+                    + " sending virtual UnDef...");
             updateState(channel, OnOffType.OFF);
         }, SCHEDULE_DELAY, TimeUnit.MILLISECONDS);
     }
 
     /**
-     * Request value lux
+     * Request turn Movement ON
+     *
+     */
+    private void requestTurnMovementOn(String where) {
+        String commandOWN = String.format("*%d*%d*%s##", 1, WHAT.MOVEMENT_DETECTED.value(), where);
+        bridgeHandler.gateway.send(OpenMessageFactory.parse(commandOWN));
+    }
+
+    /**
+     * Request turn Movement OFF
+     *
+     */
+    private void requestTurnMovementOFF(String where) {
+        String commandOWN = String.format("*%d*%d*%s##", 1, WHAT.END_MOVEMENT_DETECTED.value(), where);
+        bridgeHandler.gateway.send(OpenMessageFactory.parse(commandOWN));
+    }
+
+    /**
+     * Request value Movement lux
      *
      * example OWN
      * *#1*03#4#01*6##
      * *#1*WHERE*REQUEST_CHANNEL##
      */
-    private void requestValueLux() {
-        logger.debug("==OWN:MotionDetectorHandler== requestLux() deviceWhere:{}", deviceWhere);
-        String commandOWN = String.format("*#1*%d*%d##", deviceWhere, REQUEST_CHANNEL);
+    private void requestValueMovementLux(String where) {
+        logger.debug("==OWN:MotionDetectorHandler== requestLux() deviceWhere:{}", where);
+        String commandOWN = String.format("*#1*%s*%s##", where, REQUEST_CHANNEL);
         bridgeHandler.gateway.send(OpenMessageFactory.parse(commandOWN));
     }
 
