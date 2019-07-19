@@ -229,9 +229,7 @@
         <item-type>Switch</item-type>
         <label>Motion Detector</label>
         <description>Indicates Motion Detector has detected movement</description>
-        <category></category>
-        <state readOnly="true">
-        </state>        
+        <category></category>      
     </channel-type>
     <channel-type id="value_motionDetector">
         <item-type>Number</item-type>
