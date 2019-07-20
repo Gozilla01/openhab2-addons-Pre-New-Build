@@ -32,6 +32,7 @@ import org.eclipse.smarthome.core.types.UnDefType;
 import org.openhab.binding.openwebnet.OpenWebNetBindingConstants;
 import org.openwebnet.message.BaseOpenMessage;
 import org.openwebnet.message.Lighting;
+import org.openwebnet.message.LightingExt;
 import org.openwebnet.message.OpenMessageFactory;
 import org.openwebnet.message.What;
 import org.slf4j.Logger;
@@ -145,18 +146,12 @@ public class OpenWebNetLightingHandler extends OpenWebNetThingHandler {
         if (command instanceof OnOffType) {
             if (OnOffType.ON.equals(command)) {
                 if (what == 0) {
-                    bridgeHandler.gateway.send(Lighting.requestTurnOn(toWhere(channel), lightingType));
+                    bridgeHandler.gateway.send(LightingExt.requestTurnOn(toWhere(channel), lightingType));
                 } else {
-                    //
-                    // Attesa aggiornamento della libreria per WHAT ........
-                    // Esempio:
-                    // @param what the int
-                    // bridgeHandler.gateway
-                    // .send(Lighting.requestTurnWhat(toWhere(channel), what, lightingType));
-                    //
+                    bridgeHandler.gateway.send(LightingExt.requestTurnOnWhat(toWhere(channel), what, lightingType));
                 }
             } else if (OnOffType.OFF.equals(command)) {
-                bridgeHandler.gateway.send(Lighting.requestTurnOff(toWhere(channel), lightingType));
+                bridgeHandler.gateway.send(LightingExt.requestTurnOff(toWhere(channel), lightingType));
             }
         } else {
             logger.warn("==OWN:LightingHandler== Unsupported command: {}", command);
