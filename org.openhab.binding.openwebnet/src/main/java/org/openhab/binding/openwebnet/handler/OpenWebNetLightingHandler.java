@@ -393,7 +393,8 @@ public class OpenWebNetLightingHandler extends OpenWebNetThingHandler {
      **/
     private void ScheduleToUnDef(String channel) {
         scheduler.schedule(() -> {
-            logger.debug("==OWN:LightingHandler== ScheduleReleased() # " + deviceWhere + " sending virtual UnDef...");
+            logger.debug("==OWN:LightingHandler== ScheduleReleased() where:{} sending virtual UnDef...",
+                    toWhere(channel));
             updateState(channel, UnDefType.UNDEF);
         }, SCHEDULE_DELAY, TimeUnit.MILLISECONDS);
     }
