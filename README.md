@@ -258,7 +258,7 @@ Number       iMymotion      { channel="openwebnet:bus_command:mybridge:Mymotion:
 ```xtend
 Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
 {  
-      bus_motion_detector   Mylight     "Light"       [ where = "22" ,  what=17 ]
+      bus_on_off_switch   Mylight     "Light"       [ where = "22", what=17, addrtype=1 ]
 }
 ``` 
 
