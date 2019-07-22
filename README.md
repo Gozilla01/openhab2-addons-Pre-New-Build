@@ -42,6 +42,16 @@ last test upgrade pre7
 
 ### Changelog
 
+**v2.5.0.M3.pre10**  IN PROGRESS dd/07/2019
+
+- Update for bus `bus_motion_detector`
+- Temporary modification to the `message.Lighting`
+  - Added management for new timed WHAT
+  - Correction for group command management for different `Lighting.Type`
+  - Added management for `bus_motion_detector`
+- Temporary modification to the `message.Automation`
+  - Correction for group command management for different `Automation.Type`
+
 **v2.5.0.M3.pre9** 19/07/2019
 
 - Update for bus `bus_motion_detector`
