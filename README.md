@@ -270,7 +270,7 @@ Switch       iMylight      { channel="openwebnet:bus_command:mybridge:Mylight:sw
 ``` 
 
 | what   |Description               |  
-| ------ |:------------------------:| 
+| ------ |--------------------------| 
 |0       | Turn on/off (default) |
 |11      | ON timed 1 Min |
 |12      | ON timed 2 Min |
