@@ -17,7 +17,7 @@ Devices support some of the following channels:
 
 | Bus Name          |  Description bus       |Parameter</br>Type</br>Description       |Channel</br>Type (Read/Write)</br>Description | 
 |-------------------|------------------------|-------------------------|--------------------------|
-|`bus_on_off_switch`   |WHO=1 Lightning |`where`</br>String</br>Value where OWN</br>`what`</br>Integer (default = 0)</br>Value what OWN</br>`addrtype`</br>Integer (default = 1)</br>Address type 1= Point to Point, 2= Area, 3= Group, 4= General| `switch`</br>Switch (R/W)</br>To switch the device ON/OFF                |
+|`bus_on_off_switch`   |WHO=1 Lightning |`where`</br>String</br>Value where OWN</br>`what`</br>Integer (default = 0)</br>Value what OWN</br>`addrtype`</br>Integer (default = 1)</br>Address type 1= Point to Point, 2= Area, 3= Group, 4= General</br>`hour`</br>Integer (default = 0)</br>Timer in hour</br>`minute`</br>Integer (default = 0)</br>Timer in minute</br>`second`</br>Integer (default = 10)</br>Timer in second| `switch`</br>Switch (R/W)</br>To switch the device ON/OFF                |
 |`bus_automation`   |WHO=2 Automation |`where`</br>String</br>Value where OWN</br>`addrtype`</br>Integer (default = 1)</br>Address type 1= Point to Point, 2= Area, 3= Group, 4= General| `shutterPosition`</br>Rollershutter (R/W)</br>To activate roller shutters (UP, DOWN, STOP, Percent)</br>`shutterMotion`</br>Integer (R)</br>Roller shutter movement 0= stop, 1= up, 2= down               |
 |`bus_on_off_aux`   |WHO=9 command auxiliary |`where`</br>String</br>Value where OWN| `switch`</br>Switch (R/W)</br>To switch the device ON/OFF                |  
 |`bus_motion_detector`   |WHO=1 motion decector</br>(movement and lux value detected) |`where`</br>String</br>Value where OWN</br>`automaticToOff`</br>Boolean</br>Automatic `OFF` after 2 seconds (default=false)| `switch`</br>Switch (R/W)</br>To switch the device ON/OFF</br>`value`</br>Integer (R)</br>Detected lux value |
@@ -52,6 +52,7 @@ last test upgrade pre7
   - Added management for `bus_motion_detector`
 - Temporary modification to the `message.Automation`
   - Correction for group command management for different `Automation.Type`
+- Add news parameters `hour` , `minute` and `second` for `bus_on_off_switch` and `zb_on_off_switch` 
 
 **v2.5.0.M3.pre9** 19/07/2019
 
@@ -258,7 +259,8 @@ Number       iMymotion      { channel="openwebnet:bus_command:mybridge:Mymotion:
 ```xtend
 Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
 {  
-      bus_on_off_switch   Mylight     "Light"       [ where = "22", what=17, addrtype=1 ]
+      bus_on_off_switch   Mylight      "Light"       [ where = "22", what=17, addrtype=1 ]
+      bus_on_off_switch   Mylight1     "Light"       [ where = "22", what=99, hour=0, minute=3, second=30, addrtype=1 ]
 }
 ``` 
 
@@ -266,7 +268,7 @@ Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", pa
 
 ```xtend
 Switch       iMylight      { channel="openwebnet:bus_command:mybridge:Mylight:switch"}
-
+Switch       iMylight1      { channel="openwebnet:bus_command:mybridge:Mylight1:switch"}
 ``` 
 
 | what   |Description               |  
@@ -290,3 +292,4 @@ Switch       iMylight      { channel="openwebnet:bus_command:mybridge:Mylight:sw
 |27      | Blinking on 4 Sec |
 |28      | Blinking on 4.5 Sec |
 |29      | Blinking on 5 Sec |
+|99      | Custom |
