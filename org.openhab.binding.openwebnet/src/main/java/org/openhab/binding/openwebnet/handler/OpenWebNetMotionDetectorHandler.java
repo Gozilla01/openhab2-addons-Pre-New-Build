@@ -29,9 +29,8 @@ import org.eclipse.smarthome.core.types.UnDefType;
 import org.openhab.binding.openwebnet.OpenWebNetBindingConstants;
 import org.openwebnet.message.BaseOpenMessage;
 import org.openwebnet.message.Lighting;
-import org.openwebnet.message.Lighting.WHAT;
+import org.openwebnet.message.LightingExt;
 import org.openwebnet.message.OpenMessage;
-import org.openwebnet.message.OpenMessageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -83,7 +82,8 @@ public class OpenWebNetMotionDetectorHandler extends OpenWebNetThingHandler {
         updateStatus(ThingStatus.ONLINE);
         updateState(channel, UnDefType.UNDEF);
         if (channel.getId().equals(CHANNEL_MOTION_DETECTOR_VALUE)) {
-            requestValueMovementLux(toWhere(channel));
+            bridgeHandler.gateway
+                    .send(LightingExt.requestMotionDetectorStatus(toWhere(channel), lightingType, REQUEST_CHANNEL));
         }
     }
 
@@ -93,9 +93,9 @@ public class OpenWebNetMotionDetectorHandler extends OpenWebNetThingHandler {
                 channel.getId());
         if (command instanceof OnOffType) {
             if (OnOffType.ON.equals(command)) {
-                requestTurnMovementOn(toWhere(channel));
+                bridgeHandler.gateway.send(LightingExt.requestMotionDetectorTurnOn(toWhere(channel), lightingType));
             } else if (OnOffType.OFF.equals(command)) {
-                requestTurnMovementOFF(toWhere(channel));
+                bridgeHandler.gateway.send(LightingExt.requestMotionDetectorTurnOff(toWhere(channel), lightingType));
             }
         } else {
             logger.warn("==OWN:MotionDetectorHandler== Unsupported command: {}", command);
@@ -176,41 +176,10 @@ public class OpenWebNetMotionDetectorHandler extends OpenWebNetThingHandler {
      **/
     private void ScheduleToOff(String channel) {
         scheduler.schedule(() -> {
-            logger.debug("==OWN:MotionDetectorHandler== ScheduleReleased() # " + toWhere(channel)
-                    + " sending virtual UnDef...");
+            logger.debug("==OWN:MotionDetectorHandler== ScheduleReleased() where:{} sending virtual UnDef...",
+                    toWhere(channel));
             updateState(channel, OnOffType.OFF);
         }, SCHEDULE_DELAY, TimeUnit.MILLISECONDS);
-    }
-
-    /**
-     * Request turn Movement ON
-     *
-     */
-    private void requestTurnMovementOn(String where) {
-        String commandOWN = String.format("*%d*%d*%s##", 1, WHAT.MOVEMENT_DETECTED.value(), where);
-        bridgeHandler.gateway.send(OpenMessageFactory.parse(commandOWN));
-    }
-
-    /**
-     * Request turn Movement OFF
-     *
-     */
-    private void requestTurnMovementOFF(String where) {
-        String commandOWN = String.format("*%d*%d*%s##", 1, WHAT.END_MOVEMENT_DETECTED.value(), where);
-        bridgeHandler.gateway.send(OpenMessageFactory.parse(commandOWN));
-    }
-
-    /**
-     * Request value Movement lux
-     *
-     * example OWN
-     * *#1*03#4#01*6##
-     * *#1*WHERE*REQUEST_CHANNEL##
-     */
-    private void requestValueMovementLux(String where) {
-        logger.debug("==OWN:MotionDetectorHandler== requestLux() deviceWhere:{}", where);
-        String commandOWN = String.format("*#1*%s*%s##", where, REQUEST_CHANNEL);
-        bridgeHandler.gateway.send(OpenMessageFactory.parse(commandOWN));
     }
 
     /**

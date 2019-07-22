@@ -40,6 +40,28 @@ public class LightingExt extends BaseOpenMessage {
                 BaseOpenMessage.b(s, type).replaceFirst("\\##", "\\#")));
     }
 
+    public static LightingExt requestMotionDetectorTurnOn(final String s, final Type type) {
+        // Correzione provvisoria per la problematica nel group con doppio ##
+        // BaseOpenMessage.a(s, type);
+        return new LightingExt(String.format("*%d*%d*%s##", LightingExt.h, WHAT.MOVEMENT_DETECTED.value(),
+                BaseOpenMessage.b(s, type).replaceFirst("\\##", "\\#")));
+    }
+
+    public static LightingExt requestMotionDetectorTurnOff(final String s, final Type type) {
+        // Correzione provvisoria per la problematica nel group con doppio ##
+        // BaseOpenMessage.a(s, type);
+        return new LightingExt(String.format("*%d*%d*%s##", LightingExt.h, WHAT.END_MOVEMENT_DETECTED.value(),
+                BaseOpenMessage.b(s, type).replaceFirst("\\##", "\\#")));
+    }
+
+    public static LightingExt requestMotionDetectorStatus(final String s, final Type type,
+            final String RequestChannel) {
+        // Correzione provvisoria per la problematica nel group con doppio ##
+        // BaseOpenMessage.a(s, type);
+        return new LightingExt(String.format("*#%d*%s*%s##", LightingExt.h,
+                BaseOpenMessage.b(s, type).replaceFirst("\\##", "\\#"), RequestChannel));
+    }
+
     @Override
     public OpenDeviceType detectDeviceType() {
         if (this.isCommand()) {
