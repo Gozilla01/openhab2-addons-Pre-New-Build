@@ -63,6 +63,9 @@ public class OpenWebNetLightingHandler extends OpenWebNetThingHandler {
     private int what = 0; // address what
     private int addrtype = PARAMETER_TYPE_POINT_TO_POINT; // address type
     private final static int SCHEDULE_DELAY = 500; // ms
+    private int hour = 0; // timer hour
+    private int minute = 0; // timer minute
+    private int second = 0; // timer second
 
     public OpenWebNetLightingHandler(@NonNull Thing thing) {
         super(thing);
@@ -98,6 +101,15 @@ public class OpenWebNetLightingHandler extends OpenWebNetThingHandler {
         }
         if (getConfig().get(CONFIG_PROPERTY_WHAT) != null) {
             what = ((BigDecimal) getConfig().get(CONFIG_PROPERTY_WHAT)).intValue();
+        }
+        if (getConfig().get(CONFIG_PROPERTY_WHAT) != null) {
+            hour = ((BigDecimal) getConfig().get(CONFIG_PROPERTY_HOUR)).intValue();
+        }
+        if (getConfig().get(CONFIG_PROPERTY_WHAT) != null) {
+            minute = ((BigDecimal) getConfig().get(CONFIG_PROPERTY_MINUTE)).intValue();
+        }
+        if (getConfig().get(CONFIG_PROPERTY_WHAT) != null) {
+            second = ((BigDecimal) getConfig().get(CONFIG_PROPERTY_SECOND)).intValue();
         }
     }
 
@@ -148,7 +160,13 @@ public class OpenWebNetLightingHandler extends OpenWebNetThingHandler {
                 if (what == 0) {
                     bridgeHandler.gateway.send(LightingExt.requestTurnOn(toWhere(channel), lightingType));
                 } else {
-                    bridgeHandler.gateway.send(LightingExt.requestTurnOnWhat(toWhere(channel), what, lightingType));
+                    if (what == 99) {
+                        bridgeHandler.gateway.send(LightingExt.requestTurnOnWhatCustom(toWhere(channel), hour, minute,
+                                second, lightingType));
+                    } else {
+                        bridgeHandler.gateway.send(LightingExt.requestTurnOnWhat(toWhere(channel), what, lightingType));
+                    }
+
                 }
             } else if (OnOffType.OFF.equals(command)) {
                 bridgeHandler.gateway.send(LightingExt.requestTurnOff(toWhere(channel), lightingType));
