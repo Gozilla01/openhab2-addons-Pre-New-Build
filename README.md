@@ -9,6 +9,7 @@
 - [Group Example](#group-example)
 - [Bus Command Example](#bus-command-example)
 - [Bus Motion Detector Example](#bus-motion-detector-example)
+- [Bus Lighting with parameter what Example](#bus-lighting-with-parameter-what-example)
 
 ### Bus and Channels
 
@@ -249,3 +250,43 @@ Switch       iMymotion      { channel="openwebnet:bus_command:mybridge:Mymotion:
 Number       iMymotion      { channel="openwebnet:bus_command:mybridge:Mymotion:value"}
 
 ```
+
+### Bus Lighting with parameter what Example
+
+**openwebnet.things:**
+
+```xtend
+Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
+{  
+      bus_motion_detector   Mylight     "Light"       [ where = "22" ,  what=17 ]
+}
+``` 
+
+**openwebnet.items:**
+
+```xtend
+Switch       iMylight      { channel="openwebnet:bus_command:mybridge:Mylight:switch"}
+
+``` 
+
+| what   |Description               |  
+| ------ |:------------------------:| 
+|0       | Turn on/off (default) |
+|11      | ON timed 1 Min |
+|12      | ON timed 2 Min |
+|13      | ON timed 3 Min |
+|14      | ON timed 4 Min |
+|15      | ON timed 5 Min |
+|16      | ON timed 15 Min |
+|17      | ON timed 30 Sec |
+|18      | ON timed 0.5 Sec |
+|20      | Blinking on 0.5 Sec |
+|21      | Blinking on 1 Sec |
+|22      | Blinking on 1.5 Sec | 
+|23      | Blinking on 2 Sec |
+|24      | Blinking on 2.5 Sec |
+|25      | Blinking on 3 Sec |
+|26      | Blinking on 3.5 Sec |
+|27      | Blinking on 4 Sec |
+|28      | Blinking on 4.5 Sec |
+|29      | Blinking on 5 Sec |
