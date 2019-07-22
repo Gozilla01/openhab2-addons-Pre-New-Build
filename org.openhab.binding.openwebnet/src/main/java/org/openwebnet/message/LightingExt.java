@@ -33,6 +33,14 @@ public class LightingExt extends BaseOpenMessage {
                 String.format("*%d*%d*%s##", LightingExt.h, 0, BaseOpenMessage.b(s, type).replaceFirst("\\##", "\\#")));
     }
 
+    public static LightingExt requestTurnOnWhatCustom(final String s, final int hour, final int minute,
+            final int second, final Type type) {
+        // Correzione provvisoria per la problematica nel group con doppio ##
+        // BaseOpenMessage.a(s, type);
+        return new LightingExt(String.format("*#%d*%s*#2*%s*%s*%s##", LightingExt.h,
+                BaseOpenMessage.b(s, type).replaceFirst("\\##", "\\#"), hour, minute, second));
+    }
+
     public static LightingExt requestTurnOnWhat(final String s, final int what, final Type type) {
         // Correzione provvisoria per la problematica nel group con doppio ##
         // BaseOpenMessage.a(s, type);

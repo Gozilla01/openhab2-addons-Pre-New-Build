@@ -53,7 +53,8 @@
                     <option value="26">26 Blinking on 3.5 Sec</option> 
                     <option value="27">27 Blinking on 4 Sec</option> 
                     <option value="28">28 Blinking on 4.5 Sec</option> 
-                    <option value="29">29 Blinking on 5 Sec</option>                 
+                    <option value="29">29 Blinking on 5 Sec</option> 
+                    <option value="99">99 Custom</option>                
                 </options>
                 <default>0</default>
                 <required>true</required>
@@ -69,6 +70,24 @@
                 </options>
                 <default>1</default>
                 <required>true</required>
+            </parameter>
+            <parameter name="hour" type="integer" min="0" max="23">
+                <label>OpenWebNet timing in hours (enable what = custom)</label>
+                <description>Example: 0=0 hour, 1=1 hour</description>               
+                <default>0</default>
+                <required>false</required>
+            </parameter>
+            <parameter name="minute" type="integer" min="0" max="59">
+                <label>OpenWebNet timing in minute (enable what = custom)</label>
+                <description>Example: 0=0 minute, 1=1 minute</description>               
+                <default>0</default>
+                <required>false</required>
+            </parameter>
+            <parameter name="second" type="integer" min="0" max="59">
+                <label>OpenWebNet timing in second (enable what = custom)</label>
+                <description>Example: 0=0 second, 1=1 second</description>               
+                <default>10</default>
+                <required>false</required>
             </parameter>
 		</config-description>
 		
