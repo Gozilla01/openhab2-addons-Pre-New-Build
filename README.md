@@ -43,7 +43,7 @@ last test upgrade pre7
 
 ### Changelog
 
-**v2.5.0.M3.pre10**  IN PROGRESS dd/07/2019
+**v2.5.0.M3.pre10**  24/07/2019
 
 - Update for bus `bus_motion_detector`
 - Temporary modification to the `message.Lighting`
