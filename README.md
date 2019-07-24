@@ -3,13 +3,13 @@
 
 ### Index
 - [Bus and Channels](#bus-and-channels)
+- [Changelog](#changelog)
+- [Example Group Command](#example-group-command)
+- [Example Bus Command](#example-bus-command)
+- [Example Bus Motion Detector](#example-bus-motion-detector)
+- [Example Bus Lighting with parameter what](#example-bus-lighting-with-parameter-what)
 - [Test Lighting group addresses](#test-lighting-group-addresses)
 - [Test Automation group addresses](#test-automation-group-addresses)
-- [Changelog](#changelog)
-- [Group Example](#group-example)
-- [Bus Command Example](#bus-command-example)
-- [Bus Motion Detector Example](#bus-motion-detector-example)
-- [Bus Lighting with parameter what Example](#bus-lighting-with-parameter-what-example)
 
 ### Bus and Channels
 
@@ -22,24 +22,6 @@ Devices support some of the following channels:
 |`bus_on_off_aux`   |WHO=9 command auxiliary |`where`</br>String</br>Value where OWN| `switch`</br>Switch (R/W)</br>To switch the device ON/OFF                |  
 |`bus_motion_detector`   |WHO=1 motion decector</br>(movement and lux value detected) |`where`</br>String</br>Value where OWN</br>`automaticToOff`</br>Boolean</br>Automatic `OFF` after 2 seconds (default=false)| `switch`</br>Switch (R/W)</br>To switch the device ON/OFF</br>`value`</br>Integer (R)</br>Detected lux value |
 |`bus_command`   |command management |`who`</br>String</br>Value who OWN</br>`what`</br>String</br>Value what OWN for ON</br>`whatOff`</br>String</br>Value what OWN for OFF</br>`compare`</br>String</br>Code OWN for comparison|  `switch`</br>Switch (R/W)</br>To switch the device ON/OFF</br>`contact`</br>Switch (R/W)</br>To switch the device OPEN/CLOSE</br>`what`</br>String (W)</br>Set the value what OWN               |  
-
-### Test Lighting group addresses
-last test upgrade pre7
-
-| Group Command | Discovery Bus Principale | Bus Principal      | Discovery Bus Local | Bus Local      | Note                    | 
-| ------------- |:------------------------:|:------------------:|:-------------------:| :------------: | ----------------------- |
-| Area          |`OK`                      | `OK`               | `OK`                | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff invalid integer format      |
-| Group         |`OK`                      | `Problem (1)`      | `OK`                | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff invalid integer format      |
-| General       |`OK`                      | `OK (2)`           | `OK`                | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff allowed value [0]</br>**`(2)`** By sending the command, the group and area handlers are also called, `correct ???`
-
-### Test Automation group addresses
-last test upgrade pre7
-
-| Group Command | Discovery Bus Principale | Bus Principal    | Discovery Bus Principale | Bus Local      | Note                      | 
-| ------------- |:------------------------:| :--------------: |:------------------------:| :------------: | ------------------------- |
-| Area          | `OK`                     | `OK`             | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown invalid integer format                           |
-| Group         | `OK`                     | `Problem (1)`    | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown invalid integer format   |
-| General       | `OK`                     | `OK (2)`         | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown allowed value [0]</br>**`(2)`** By sending the command, the group and area handlers are also called, `correct ???`   |
 
 ### Changelog
 
@@ -132,8 +114,7 @@ last test upgrade pre7
 - [Fix [#69](https://github.com/mvalla/openhab2-addons/issues/69)] Updating of article statuses, lighting and automation, with the received AMB-GR-GEN commands.
 
 
-
-### Group Example
+### Example Group Command
 
 **openwebnet.things:**
 
@@ -179,7 +160,7 @@ sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
 
 ```
 
-### Bus Command Example
+### Example Bus Command
 
 **openwebnet.things:**
 
@@ -240,7 +221,7 @@ end
 
 ```
 
-### Bus Motion Detector Example
+### Example Bus Motion Detector
 
 **openwebnet.things:**
 
@@ -259,7 +240,7 @@ Number       iMymotion      {channel="openwebnet:bus_command:mybridge:Mymotion:v
 
 ```
 
-### Bus Lighting with parameter what Example
+### Example Bus Lighting with parameter what
 
 **openwebnet.things:**
 
@@ -300,3 +281,21 @@ Switch       iMylight1     {channel="openwebnet:bus_command:mybridge:Mylight1:sw
 |28      | Blinking on 4.5 Sec |
 |29      | Blinking on 5 Sec |
 |99      | Custom |
+
+### Test Lighting group addresses
+last test upgrade pre7
+
+| Group Command | Discovery Bus Principale | Bus Principal      | Discovery Bus Local | Bus Local      | Note                    | 
+| ------------- |:------------------------:|:------------------:|:-------------------:| :------------: | ----------------------- |
+| Area          |`OK`                      | `OK`               | `OK`                | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff invalid integer format      |
+| Group         |`OK`                      | `Problem (1)`      | `OK`                | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff invalid integer format      |
+| General       |`OK`                      | `OK (2)`           | `OK`                | `Problem (1)`  | **`(1)`**  requestTurnOn and requestTurnOff allowed value [0]</br>**`(2)`** By sending the command, the group and area handlers are also called, `correct ???`
+
+### Test Automation group addresses
+last test upgrade pre7
+
+| Group Command | Discovery Bus Principale | Bus Principal    | Discovery Bus Principale | Bus Local      | Note                      | 
+| ------------- |:------------------------:| :--------------: |:------------------------:| :------------: | ------------------------- |
+| Area          | `OK`                     | `OK`             | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown invalid integer format                           |
+| Group         | `OK`                     | `Problem (1)`    | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown invalid integer format   |
+| General       | `OK`                     | `OK (2)`         | `OK`                     | `Problem (1)`  | **`(1)`**  requestMoveUp and requestMoveDown allowed value [0]</br>**`(2)`** By sending the command, the group and area handlers are also called, `correct ???`   |
