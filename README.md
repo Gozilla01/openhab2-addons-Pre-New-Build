@@ -138,18 +138,20 @@ last test upgrade pre7
 **openwebnet.things:**
 
 ```xtend
-Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
+Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [host="192.168.1.35" , passwd="abcde" , port=20000 , discoveryByActivation=true]
 {  
-      bus_on_off_switch MygroupArea    "Group 1-2 Area"		[ where="2", what=0, addrtype=2 ]
-      bus_on_off_switch MygroupGen     "Group 1-GEN"		[ where="0", what=0, addrtype=4 ]
+      bus_on_off_switch  MygroupArea    "Area 2"	 [where="2" , what=0 , addrtype=2]
+      bus_on_off_switch  MygroupGroup   "Group 2"	 [where="#2" , what=0 , addrtype=3]
+      bus_on_off_switch  MygroupGen     "General"  [where="0" , what=0 , addrtype=4]
 }
 ``` 
 
 **openwebnet.items:**
 
 ```xtend
-Switch   ILR_testArea1   "Group 1-2 AREA"   { channel="openwebnet:bus_on_off_switch:mybridge:MygroupArea:switch"}
-Switch   ILR_testGen1    "Group 1-GEN"      { channel="openwebnet:bus_on_off_switch:mybridge:MygroupGen:switch"}
+Switch   ILR_testArea1   "Area 2"   {channel="openwebnet:bus_on_off_switch:mybridge:MygroupArea:switch"}
+Switch   ILR_testGroup1  "Group 2"  {channel="openwebnet:bus_on_off_switch:mybridge:MygroupGroup:switch"}
+Switch   ILR_testGen1    "General"  {channel="openwebnet:bus_on_off_switch:mybridge:MygroupGen:switch"}
 
 ```
 
@@ -160,13 +162,18 @@ sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
 {
    Frame label="Test AMB Lighing" 
    {     
-      Switch item=ILR_testArea1     label="Area 2"    mappings=[ON="ON"]
-      Switch item=ILR_testArea1     label="Area 2"    mappings=[OFF="OFF"]		   
+      Switch item=ILR_testArea1     label="Area 2"     mappings=[ON="ON"]
+      Switch item=ILR_testArea1     label="Area 2"     mappings=[OFF="OFF"]		   
+   }
+   Frame label="Test GROUP Lighing" 
+   {     
+      Switch item=ILR_testGroup1    label="Group 2"    mappings=[ON="ON"]
+      Switch item=ILR_testGroup1    label="Group 2"    mappings=[OFF="OFF"]		   
    }
    Frame label="Test GEN Lighing"
    {
-      Switch item=ILR_testGen1      label="GEN"       mappings=[ON="ON"]
-      Switch item=ILR_testGen1      label="GEN"       mappings=[OFF="OFF"]		
+      Switch item=ILR_testGen1      label="General"    mappings=[ON="ON"]
+      Switch item=ILR_testGen1      label=General"     mappings=[OFF="OFF"]		
    }
 }
 
@@ -177,20 +184,20 @@ sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
 **openwebnet.things:**
 
 ```xtend
-Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
+Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [host="192.168.1.35" , passwd="abcde" , port=20000 , discoveryByActivation=true]
 {  
-      bus_command   Mycomm     "Command"       [ who ="1" , what="1" , where = "22" ,  whatOff="0", compare ="" ]
-      bus_command   Mycomm1    "Command 1"     [ who ="1" , what="1" , where = "21" ,  whatOff="0", compare ="*1*1*23##" ]
-      bus_command   Mycomm2    "Command 2"     [ who ="2" , what="1" , where = "81" ,  whatOff="0", compare ="*1*1*23##" ]
+      bus_command   Mycomm     "Command"       [who="1" , what="1" , where="22" , whatOff="0" , compare=""]
+      bus_command   Mycomm1    "Command 1"     [who="1" , what="1" , where="21" , whatOff="0" , compare="*1*1*23##"]
+      bus_command   Mycomm2    "Command 2"     [who="2" , what="1" , where="81" , whatOff="0" , compare="*1*1*23##"]
 }
 ``` 
 
 **openwebnet.items:**
 
 ```xtend
-String       iMyCommand       { channel="openwebnet:bus_command:mybridge:Mycomm:what" }
-Switch       iMyCommand1      { channel="openwebnet:bus_command:mybridge:Mycomm:switch"}
-Contact      iMyCommand2      { channel="openwebnet:bus_command:mybridge:Mycomm:contact"}
+String       iMyCommand       {channel="openwebnet:bus_command:mybridge:Mycomm:what"}
+Switch       iMyCommand1      {channel="openwebnet:bus_command:mybridge:Mycomm:switch"}
+Contact      iMyCommand2      {channel="openwebnet:bus_command:mybridge:Mycomm:contact"}
 
 ```
 
@@ -201,10 +208,10 @@ sitemap openwebnet label="OpenWebNet Binding Example Sitemap"
 {
    Frame label="Command" 
    {
-     Text 	 item=iMyCommand   label="What [%s]"      icon="door"
-     Switch      item=iMyCommand1  label="Switch [%s]"    icon="light"
-     Text 	 item=iMyCommand2  label="Contact [%s]"   icon="door"
-     Switch      item=iMyCommand1  label="da Button [%s]" icon="light"  mappings=[ON="ON" , OFF="OFF"]     
+     Text 	  item=iMyCommand   label="What [%s]"       icon="door"
+     Switch   item=iMyCommand1  label="Switch [%s]"     icon="light"
+     Text 	  item=iMyCommand2  label="Contact [%s]"    icon="door"
+     Switch   item=iMyCommand1  label="da Button [%s]"  icon="light"  mappings=[ON="ON" , OFF="OFF"]     
    }
 }
 
@@ -238,17 +245,17 @@ end
 **openwebnet.things:**
 
 ```xtend
-Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
+Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [host="192.168.1.35" , passwd="abcde" , port=20000 , discoveryByActivation=true]
 {  
-      bus_motion_detector   Mymotion     "Motion"       [ where = "22" ,  automaticToOff = false]
+      bus_motion_detector   Mymotion     "Motion"       [where="22" , automaticToOff=false]
 }
 ``` 
 
 **openwebnet.items:**
 
 ```xtend
-Switch       iMymotion      { channel="openwebnet:bus_command:mybridge:Mymotion:switch"}
-Number       iMymotion      { channel="openwebnet:bus_command:mybridge:Mymotion:value"}
+Switch       iMymotion      {channel="openwebnet:bus_command:mybridge:Mymotion:switch"}
+Number       iMymotion      {channel="openwebnet:bus_command:mybridge:Mymotion:value"}
 
 ```
 
@@ -257,18 +264,18 @@ Number       iMymotion      { channel="openwebnet:bus_command:mybridge:Mymotion:
 **openwebnet.things:**
 
 ```xtend
-Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [ host="192.168.1.35", passwd="abcde", port=20000, discoveryByActivation=true ]
+Bridge openwebnet:bus_gateway:mybridge "MyHOMEServer1" [host="192.168.1.35" , passwd="abcde" , port=20000 , discoveryByActivation=true]
 {  
-      bus_on_off_switch   Mylight      "Light"       [ where = "22", what=17, addrtype=1 ]
-      bus_on_off_switch   Mylight1     "Light"       [ where = "22", what=99, hour=0, minute=3, second=30, addrtype=1 ]
+      bus_on_off_switch   Mylight    "Light"   [where="22" , what=17 , addrtype=1]
+      bus_on_off_switch   Mylight1   "Light"   [where="23" , what=99 , hour=0 , minute=3 , second=30 , addrtype=1]
 }
 ``` 
 
 **openwebnet.items:**
 
 ```xtend
-Switch       iMylight      { channel="openwebnet:bus_command:mybridge:Mylight:switch"}
-Switch       iMylight1      { channel="openwebnet:bus_command:mybridge:Mylight1:switch"}
+Switch       iMylight      {channel="openwebnet:bus_command:mybridge:Mylight:switch"}
+Switch       iMylight1     {channel="openwebnet:bus_command:mybridge:Mylight1:switch"}
 ``` 
 
 | what   |Description               |  
