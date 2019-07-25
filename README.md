@@ -25,6 +25,10 @@ Devices support some of the following channels:
 
 ### Changelog
 
+**v2.5.0.M3.pre11** IN PROGRESS dd/07/2019
+
+- Update WHAT in `message.Lighting`
+
 **v2.5.0.M3.pre10**  24/07/2019
 
 - Update for bus `bus_motion_detector`
