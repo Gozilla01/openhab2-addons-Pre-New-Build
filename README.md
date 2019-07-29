@@ -28,6 +28,7 @@ Devices support some of the following channels:
 **v2.5.0.M3.pre11** IN PROGRESS dd/07/2019
 
 - Update WHAT in `message.Lighting`
+- Translation Italian
 
 **v2.5.0.M3.pre10**  24/07/2019
 
