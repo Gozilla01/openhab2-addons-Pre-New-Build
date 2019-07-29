@@ -200,6 +200,12 @@ public class OpenWebNetDeviceDiscoveryService extends AbstractDiscoveryService i
                     deviceWho = Who.AUX;
                     break;
                 }
+                // case SCS_SCENARIO_PROGRAMMING: {
+                // thingTypeUID = OpenWebNetBindingConstants.THING_TYPE_BUS_SCENES;
+                // thingLabel = OpenWebNetBindingConstants.THING_LABEL_BUS_SCENES;
+                // deviceWho = Who.SCENARIO_PROGRAMMING;
+                // break;
+                // }
                 case ZIGBEE_AUXILIARY_ON_OFF_1_GANG_SWITCH: {
                     thingTypeUID = OpenWebNetBindingConstants.THING_TYPE_ZB_AUX_SWITCH;
                     thingLabel = OpenWebNetBindingConstants.THING_LABEL_ZB_AUX_SWITCH;

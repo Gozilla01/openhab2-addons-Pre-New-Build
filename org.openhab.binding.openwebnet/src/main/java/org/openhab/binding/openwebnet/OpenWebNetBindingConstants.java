@@ -86,6 +86,10 @@ public class OpenWebNetBindingConstants {
             "bus_motion_detector");
     public static final String THING_LABEL_BUS_DETECTOR = "Motion Detector";
 
+    // SCENES PROGRAMMING
+    public static final ThingTypeUID THING_TYPE_BUS_SCENES = new ThingTypeUID(BINDING_ID, "bus_scenes");
+    public static final String THING_LABEL_BUS_SCENES = "Scenes Programming";
+
     // ZIGBEE
     public static final ThingTypeUID THING_TYPE_ZB_ON_OFF_SWITCH = new ThingTypeUID(BINDING_ID, "zb_on_off_switch");
     public static final String THING_LABEL_ZB_ON_OFF_SWITCH = "ZigBee Switch";
@@ -134,12 +138,15 @@ public class OpenWebNetBindingConstants {
     // ## Motion Detector
     public static final Set<ThingTypeUID> MOTION_DETECTOR_SUPPORTED_THING_TYPES = new HashSet<>(
             Arrays.asList(THING_TYPE_BUS_MOTION_DETECTOR));
+    // ## Scenes Programming
+    public static final Set<ThingTypeUID> SCENES_SUPPORTED_THING_TYPES = new HashSet<>(
+            Arrays.asList(THING_TYPE_BUS_SCENES));
     // ## Groups
     public static final Set<ThingTypeUID> DEVICE_SUPPORTED_THING_TYPES = Stream
             .of(LIGHTING_SUPPORTED_THING_TYPES, AUTOMATION_SUPPORTED_THING_TYPES,
                     THERMOREGULATION_SUPPORTED_THING_TYPES, ENERGY_SUPPORTED_THING_TYPES,
                     SCENARIO_SUPPORTED_THING_TYPES, GENERIC_SUPPORTED_THING_TYPES, AUX_SUPPORTED_THING_TYPES,
-                    COMMAND_SUPPORTED_THING_TYPES, MOTION_DETECTOR_SUPPORTED_THING_TYPES)
+                    COMMAND_SUPPORTED_THING_TYPES, MOTION_DETECTOR_SUPPORTED_THING_TYPES, SCENES_SUPPORTED_THING_TYPES)
             .flatMap(Collection::stream).collect(Collectors.toCollection(HashSet::new));
 
     // Sets.union(LIGHTING_SUPPORTED_THING_TYPES,
@@ -200,6 +207,10 @@ public class OpenWebNetBindingConstants {
     // motion detector
     public static final String CHANNEL_MOTION_DETECTOR_SWITCH = "switch";
     public static final String CHANNEL_MOTION_DETECTOR_VALUE = "value";
+
+    // scenes programming
+    public static final String CHANNEL_SCENES_START = "switch";
+    public static final String CHANNEL_SCENES_ACTIVATE = "activate";
 
     // devices config properties
     public static final String CONFIG_PROPERTY_WHERE = "where";
